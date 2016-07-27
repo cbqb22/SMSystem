@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="SMSView.UI.UserControls.Shift.StoreSfhiftTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SMSView.UI.UserControls.Shift"
+             xmlns:uc="clr-namespace:SMSView.UI.UserControls.Shift"
+             xmlns:custom="clr-namespace:SMSView.UI.CustomControls"
+             xmlns:db="clr-namespace:SMSModel.DB.SMSystem;assembly=SMSModel"
+             xmlns:converter="clr-namespace:SMSViewModel.Common.Converter;assembly=SMSViewModel"
+             Background="#FF2F415F"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1600"
+>
+    <UserControl.Resources>
+
+        <converter:WorkingTimeToDisplayStringsConverter x:Key="WorkingTimeToDisplayStringsConverter" />
+        <converter:IntermissionToDisplayStringsConverter x:Key="IntermissionToDisplayStringsConverter" />
+
+        <Style x:Key="gridShiftArea" TargetType="Grid">
+            <!--<Setter Property="Margin" Value="0" />-->
+        </Style>
+
+        <Style x:Key="gridHeader" TargetType="Grid">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="gridLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style x:Key="styleScrollViewer" TargetType="ScrollViewer">
+            <Setter Property="Width" Value="1500" />
+            <Setter Property="Height" Value="660" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="styButton">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Background" Value="LightYellow" />
+            <Setter Property="Foreground" Value="Gray" />
+        </Style>
+
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource gridHeader}">
+                <!--TODOバインディング-->
+                <Label Content="登戸店 調剤室" Style="{StaticResource gridLabel}"/>
+            </Grid>
+
+
+
+            <Grid Grid.Row="1" Grid.Column="0"  Style="{StaticResource gridShiftArea}">
+                <uc:IndividualColumnCellsHeader DataContext="{Binding Selector,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ShiftMainFrame}}}"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1"  Style="{StaticResource gridShiftArea}">
+                <ScrollViewer Style="{StaticResource styleScrollViewer}">
+                    <StackPanel Orientation="Horizontal">
+                        <uc:IndividualColumnCells Panel.ZIndex="12" DataContext="{Binding [0]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="11" DataContext="{Binding [1]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="10" DataContext="{Binding [2]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="9" DataContext="{Binding [3]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="8" DataContext="{Binding [4]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="7" DataContext="{Binding [5]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="6" DataContext="{Binding [6]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="5" DataContext="{Binding [7]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="4" DataContext="{Binding [8]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="3" DataContext="{Binding [9]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="2" DataContext="{Binding [10]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="1" DataContext="{Binding [11]}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="1">
+                <StackPanel Orientation="Horizontal" >
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F1" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Next" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F2" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Previous" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F3" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Copy" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F4" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Paste" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F5" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Clear" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F6" HorizontalAlignment="Center"/>
+                                <TextBlock Text="" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F7" HorizontalAlignment="Center"/>
+                                <TextBlock Text="" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F8" HorizontalAlignment="Center"/>
+                                <TextBlock Text="" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F9" HorizontalAlignment="Center"/>
+                                <TextBlock Text="" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F10" HorizontalAlignment="Center"/>
+                                <TextBlock Text="SelectColumn" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F11" HorizontalAlignment="Center"/>
+                                <TextBlock Text="SelectRow" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button  Style="{StaticResource styButton}" >
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical"  >
+                                <TextBlock Text="F12" HorizontalAlignment="Center"/>
+                                <TextBlock Text="SelectAll" HorizontalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

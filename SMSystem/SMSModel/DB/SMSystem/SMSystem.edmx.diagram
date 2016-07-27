@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9b247549957d4aeeaa7868e19fb3788b" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="SMSystemModel.DutyCategory" Width="1.5" PointX="6" PointY="1.25" />
+        <EntityTypeShape EntityType="SMSystemModel.Employee" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="SMSystemModel.ShiftDetail" Width="1.5" PointX="8.25" PointY="5.75" />
+        <EntityTypeShape EntityType="SMSystemModel.Shift" Width="1.5" PointX="5.25" PointY="9.875" />
+        <EntityTypeShape EntityType="SMSystemModel.ShopCategory" Width="1.5" PointX="3.75" PointY="0.875" />
+        <EntityTypeShape EntityType="SMSystemModel.Shop" Width="1.5" PointX="6" PointY="4.75" />
+        <EntityTypeShape EntityType="SMSystemModel.Status" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="SMSystemModel.Territory" Width="1.5" PointX="0.75" PointY="5.75" />
+        <AssociationConnector Association="SMSystemModel.FK_ShiftDetails_DutyCategories1" />
+        <AssociationConnector Association="SMSystemModel.FK_Employees_Shops" />
+        <AssociationConnector Association="SMSystemModel.FK_Employees_Statuses" />
+        <AssociationConnector Association="SMSystemModel.FK_Employees_Territories" />
+        <AssociationConnector Association="SMSystemModel.FK_Shifts_Employees1" />
+        <AssociationConnector Association="SMSystemModel.FK_ShiftDetails_Shifts1" />
+        <AssociationConnector Association="SMSystemModel.FK_ShiftDetails_Shop" />
+        <AssociationConnector Association="SMSystemModel.FK_Shops_ShopCategories" />
+        <AssociationConnector Association="SMSystemModel.FK_Shops_Territories1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

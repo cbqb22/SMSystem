@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SMSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DutyCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="業務名" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="備考" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="削除フラグ" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="TerritoryID" Type="int" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
+          <Property Name="姓" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="名" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="性別" Type="bit" Nullable="false" />
+          <Property Name="生年月日" Type="datetime" Nullable="false" />
+          <Property Name="郵便番号" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="住所" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="自宅電話番号" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="携帯電話番号" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Eメールアドレス" Type="nvarchar" MaxLength="254" Nullable="false" />
+          <Property Name="携帯メールアドレス" Type="nvarchar" MaxLength="254" Nullable="false" />
+          <Property Name="ホームページ" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="備考" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="登録日時" Type="datetime" Nullable="false" />
+          <Property Name="外国人フラグ" Type="bit" Nullable="false" />
+          <Property Name="削除フラグ" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShiftDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShiftID" Type="int" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
+          <Property Name="DutyCategoryID" Type="int" Nullable="false" />
+          <Property Name="IsHoliday" Type="bit" Nullable="false" />
+          <Property Name="WorkingDate" Type="datetime" Nullable="false" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Intermission1" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="Intermission2" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="TravelTime1" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="TravelTime2" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="IsHelpStaff" Type="bit" Nullable="false" />
+          <Property Name="登録日時" Type="datetime" Nullable="false" />
+          <Property Name="備考" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="削除フラグ" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shifts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="削除フラグ" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShopCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="カテゴリ種別" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="備考" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopCategoryID" Type="int" Nullable="false" />
+          <Property Name="TerritoryID" Type="int" Nullable="false" />
+          <Property Name="店舗名" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="営業時間_通常" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="営業時間_祝日" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="営業時間_その他" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="営業日" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="オープン日時" Type="datetime" Nullable="false" />
+          <Property Name="閉店日時" Type="datetime" Nullable="false" />
+          <Property Name="削除フラグ" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="役職名" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="削除フラグ" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Territories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="エリア名" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="備考" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="削除フラグ" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employees_Shops">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Territories">
+          <End Role="Territories" Type="Self.Territories" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Territories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="TerritoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShiftDetails_DutyCategories1">
+          <End Role="DutyCategories" Type="Self.DutyCategories" Multiplicity="1" />
+          <End Role="ShiftDetails" Type="Self.ShiftDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DutyCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShiftDetails">
+              <PropertyRef Name="DutyCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShiftDetails_Shifts1">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="ShiftDetails" Type="Self.ShiftDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShiftDetails">
+              <PropertyRef Name="ShiftID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShiftDetails_Shop">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="ShiftDetails" Type="Self.ShiftDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShiftDetails">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shifts_Employees1">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shifts">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shops_ShopCategories">
+          <End Role="ShopCategories" Type="Self.ShopCategories" Multiplicity="1" />
+          <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shops">
+              <PropertyRef Name="ShopCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shops_Territories1">
+          <End Role="Territories" Type="Self.Territories" Multiplicity="1" />
+          <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Territories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shops">
+              <PropertyRef Name="TerritoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSystemModelStoreContainer">
+          <EntitySet Name="DutyCategories" EntityType="Self.DutyCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShiftDetails" EntityType="Self.ShiftDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopCategories" EntityType="Self.ShopCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Territories" EntityType="Self.Territories" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employees_Shops" Association="Self.FK_Employees_Shops">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Statuses" Association="Self.FK_Employees_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Territories" Association="Self.FK_Employees_Territories">
+            <End Role="Territories" EntitySet="Territories" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShiftDetails_DutyCategories1" Association="Self.FK_ShiftDetails_DutyCategories1">
+            <End Role="DutyCategories" EntitySet="DutyCategories" />
+            <End Role="ShiftDetails" EntitySet="ShiftDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShiftDetails_Shifts1" Association="Self.FK_ShiftDetails_Shifts1">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="ShiftDetails" EntitySet="ShiftDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShiftDetails_Shop" Association="Self.FK_ShiftDetails_Shop">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="ShiftDetails" EntitySet="ShiftDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shifts_Employees1" Association="Self.FK_Shifts_Employees1">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Shifts" EntitySet="Shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shops_ShopCategories" Association="Self.FK_Shops_ShopCategories">
+            <End Role="ShopCategories" EntitySet="ShopCategories" />
+            <End Role="Shops" EntitySet="Shops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shops_Territories1" Association="Self.FK_Shops_Territories1">
+            <End Role="Territories" EntitySet="Territories" />
+            <End Role="Shops" EntitySet="Shops" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SMSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SMSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DutyCategories" EntityType="SMSystemModel.DutyCategory" />
+          <EntitySet Name="Employees" EntityType="SMSystemModel.Employee" />
+          <EntitySet Name="ShiftDetails" EntityType="SMSystemModel.ShiftDetail" />
+          <EntitySet Name="Shifts" EntityType="SMSystemModel.Shift" />
+          <EntitySet Name="ShopCategories" EntityType="SMSystemModel.ShopCategory" />
+          <EntitySet Name="Shops" EntityType="SMSystemModel.Shop" />
+          <EntitySet Name="Statuses" EntityType="SMSystemModel.Status" />
+          <EntitySet Name="Territories" EntityType="SMSystemModel.Territory" />
+          <AssociationSet Name="FK_ShiftDetails_DutyCategories1" Association="SMSystemModel.FK_ShiftDetails_DutyCategories1">
+            <End Role="DutyCategory" EntitySet="DutyCategories" />
+            <End Role="ShiftDetail" EntitySet="ShiftDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Shops" Association="SMSystemModel.FK_Employees_Shops">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Statuses" Association="SMSystemModel.FK_Employees_Statuses">
+            <End Role="Status" EntitySet="Statuses" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Territories" Association="SMSystemModel.FK_Employees_Territories">
+            <End Role="Territory" EntitySet="Territories" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shifts_Employees1" Association="SMSystemModel.FK_Shifts_Employees1">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Shift" EntitySet="Shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShiftDetails_Shifts1" Association="SMSystemModel.FK_ShiftDetails_Shifts1">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="ShiftDetail" EntitySet="ShiftDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShiftDetails_Shop" Association="SMSystemModel.FK_ShiftDetails_Shop">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="ShiftDetail" EntitySet="ShiftDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shops_ShopCategories" Association="SMSystemModel.FK_Shops_ShopCategories">
+            <End Role="ShopCategory" EntitySet="ShopCategories" />
+            <End Role="Shop" EntitySet="Shops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shops_Territories1" Association="SMSystemModel.FK_Shops_Territories1">
+            <End Role="Territory" EntitySet="Territories" />
+            <End Role="Shop" EntitySet="Shops" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DutyCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="業務名" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="備考" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ShiftDetails" Relationship="SMSystemModel.FK_ShiftDetails_DutyCategories1" FromRole="DutyCategory" ToRole="ShiftDetail" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="TerritoryID" Type="Int32" Nullable="false" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
+          <Property Name="姓" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="名" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="性別" Type="Boolean" Nullable="false" />
+          <Property Name="生年月日" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="郵便番号" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="住所" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="自宅電話番号" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="携帯電話番号" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Eメールアドレス" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="携帯メールアドレス" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="ホームページ" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="備考" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="登録日時" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="外国人フラグ" Type="Boolean" Nullable="false" />
+          <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Shop" Relationship="SMSystemModel.FK_Employees_Shops" FromRole="Employee" ToRole="Shop" />
+          <NavigationProperty Name="Status" Relationship="SMSystemModel.FK_Employees_Statuses" FromRole="Employee" ToRole="Status" />
+          <NavigationProperty Name="Territory" Relationship="SMSystemModel.FK_Employees_Territories" FromRole="Employee" ToRole="Territory" />
+          <NavigationProperty Name="Shifts" Relationship="SMSystemModel.FK_Shifts_Employees1" FromRole="Employee" ToRole="Shift" />
+        </EntityType>
+        <EntityType Name="ShiftDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShiftID" Type="Int32" Nullable="false" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
+          <Property Name="DutyCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="IsHoliday" Type="Boolean" Nullable="false" />
+          <Property Name="WorkingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartTime" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Intermission1" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="Intermission2" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="TravelTime1" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="TravelTime2" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="IsHelpStaff" Type="Boolean" Nullable="false" />
+          <Property Name="登録日時" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="備考" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DutyCategory" Relationship="SMSystemModel.FK_ShiftDetails_DutyCategories1" FromRole="ShiftDetail" ToRole="DutyCategory" />
+          <NavigationProperty Name="Shift" Relationship="SMSystemModel.FK_ShiftDetails_Shifts1" FromRole="ShiftDetail" ToRole="Shift" />
+          <NavigationProperty Name="Shop" Relationship="SMSystemModel.FK_ShiftDetails_Shop" FromRole="ShiftDetail" ToRole="Shop" />
+        </EntityType>
+        <EntityType Name="Shift">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="SMSystemModel.FK_Shifts_Employees1" FromRole="Shift" ToRole="Employee" />
+          <NavigationProperty Name="ShiftDetails" Relationship="SMSystemModel.FK_ShiftDetails_Shifts1" FromRole="Shift" ToRole="ShiftDetail" />
+        </EntityType>
+        <EntityType Name="ShopCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="カテゴリ種別" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="備考" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Shops" Relationship="SMSystemModel.FK_Shops_ShopCategories" FromRole="ShopCategory" ToRole="Shop" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="TerritoryID" Type="Int32" Nullable="false" />
+          <Property Name="店舗名" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="営業時間_通常" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="営業時間_祝日" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="営業時間_その他" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="営業日" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="オープン日時" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="閉店日時" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="SMSystemModel.FK_Employees_Shops" FromRole="Shop" ToRole="Employee" />
+          <NavigationProperty Name="ShiftDetails" Relationship="SMSystemModel.FK_ShiftDetails_Shop" FromRole="Shop" ToRole="ShiftDetail" />
+          <NavigationProperty Name="ShopCategory" Relationship="SMSystemModel.FK_Shops_ShopCategories" FromRole="Shop" ToRole="ShopCategory" />
+          <NavigationProperty Name="Territory" Relationship="SMSystemModel.FK_Shops_Territories1" FromRole="Shop" ToRole="Territory" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="役職名" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="SMSystemModel.FK_Employees_Statuses" FromRole="Status" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Territory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="エリア名" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="備考" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="SMSystemModel.FK_Employees_Territories" FromRole="Territory" ToRole="Employee" />
+          <NavigationProperty Name="Shops" Relationship="SMSystemModel.FK_Shops_Territories1" FromRole="Territory" ToRole="Shop" />
+        </EntityType>
+        <Association Name="FK_ShiftDetails_DutyCategories1">
+          <End Type="SMSystemModel.DutyCategory" Role="DutyCategory" Multiplicity="1" />
+          <End Type="SMSystemModel.ShiftDetail" Role="ShiftDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DutyCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShiftDetail">
+              <PropertyRef Name="DutyCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Shops">
+          <End Type="SMSystemModel.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="SMSystemModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Statuses">
+          <End Type="SMSystemModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="SMSystemModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Territories">
+          <End Type="SMSystemModel.Territory" Role="Territory" Multiplicity="1" />
+          <End Type="SMSystemModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Territory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="TerritoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shifts_Employees1">
+          <End Type="SMSystemModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="SMSystemModel.Shift" Role="Shift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shift">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShiftDetails_Shifts1">
+          <End Type="SMSystemModel.Shift" Role="Shift" Multiplicity="1" />
+          <End Type="SMSystemModel.ShiftDetail" Role="ShiftDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShiftDetail">
+              <PropertyRef Name="ShiftID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShiftDetails_Shop">
+          <End Type="SMSystemModel.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="SMSystemModel.ShiftDetail" Role="ShiftDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShiftDetail">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shops_ShopCategories">
+          <End Type="SMSystemModel.ShopCategory" Role="ShopCategory" Multiplicity="1" />
+          <End Type="SMSystemModel.Shop" Role="Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="ShopCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shops_Territories1">
+          <End Type="SMSystemModel.Territory" Role="Territory" Multiplicity="1" />
+          <End Type="SMSystemModel.Shop" Role="Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Territory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="TerritoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SMSystemModelStoreContainer" CdmEntityContainer="SMSystemEntities">
+          <EntitySetMapping Name="DutyCategories">
+            <EntityTypeMapping TypeName="SMSystemModel.DutyCategory">
+              <MappingFragment StoreEntitySet="DutyCategories">
+                <ScalarProperty Name="削除フラグ" ColumnName="削除フラグ" />
+                <ScalarProperty Name="備考" ColumnName="備考" />
+                <ScalarProperty Name="業務名" ColumnName="業務名" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="SMSystemModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="削除フラグ" ColumnName="削除フラグ" />
+                <ScalarProperty Name="外国人フラグ" ColumnName="外国人フラグ" />
+                <ScalarProperty Name="登録日時" ColumnName="登録日時" />
+                <ScalarProperty Name="備考" ColumnName="備考" />
+                <ScalarProperty Name="ホームページ" ColumnName="ホームページ" />
+                <ScalarProperty Name="携帯メールアドレス" ColumnName="携帯メールアドレス" />
+                <ScalarProperty Name="Eメールアドレス" ColumnName="Eメールアドレス" />
+                <ScalarProperty Name="携帯電話番号" ColumnName="携帯電話番号" />
+                <ScalarProperty Name="自宅電話番号" ColumnName="自宅電話番号" />
+                <ScalarProperty Name="住所" ColumnName="住所" />
+                <ScalarProperty Name="郵便番号" ColumnName="郵便番号" />
+                <ScalarProperty Name="生年月日" ColumnName="生年月日" />
+                <ScalarProperty Name="性別" ColumnName="性別" />
+                <ScalarProperty Name="名" ColumnName="名" />
+                <ScalarProperty Name="姓" ColumnName="姓" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShiftDetails">
+            <EntityTypeMapping TypeName="SMSystemModel.ShiftDetail">
+              <MappingFragment StoreEntitySet="ShiftDetails">
+                <ScalarProperty Name="削除フラグ" ColumnName="削除フラグ" />
+                <ScalarProperty Name="備考" ColumnName="備考" />
+                <ScalarProperty Name="登録日時" ColumnName="登録日時" />
+                <ScalarProperty Name="IsHelpStaff" ColumnName="IsHelpStaff" />
+                <ScalarProperty Name="TravelTime2" ColumnName="TravelTime2" />
+                <ScalarProperty Name="TravelTime1" ColumnName="TravelTime1" />
+                <ScalarProperty Name="Intermission2" ColumnName="Intermission2" />
+                <ScalarProperty Name="Intermission1" ColumnName="Intermission1" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="WorkingDate" ColumnName="WorkingDate" />
+                <ScalarProperty Name="IsHoliday" ColumnName="IsHoliday" />
+                <ScalarProperty Name="DutyCategoryID" ColumnName="DutyCategoryID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shifts">
+            <EntityTypeMapping TypeName="SMSystemModel.Shift">
+              <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="削除フラグ" ColumnName="削除フラグ" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopCategories">
+            <EntityTypeMapping TypeName="SMSystemModel.ShopCategory">
+              <MappingFragment StoreEntitySet="ShopCategories">
+                <ScalarProperty Name="備考" ColumnName="備考" />
+                <ScalarProperty Name="カテゴリ種別" ColumnName="カテゴリ種別" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="SMSystemModel.Shop">
+              <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="削除フラグ" ColumnName="削除フラグ" />
+                <ScalarProperty Name="閉店日時" ColumnName="閉店日時" />
+                <ScalarProperty Name="オープン日時" ColumnName="オープン日時" />
+                <ScalarProperty Name="営業日" ColumnName="営業日" />
+                <ScalarProperty Name="営業時間_その他" ColumnName="営業時間_その他" />
+                <ScalarProperty Name="営業時間_祝日" ColumnName="営業時間_祝日" />
+                <ScalarProperty Name="営業時間_通常" ColumnName="営業時間_通常" />
+                <ScalarProperty Name="店舗名" ColumnName="店舗名" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="ShopCategoryID" ColumnName="ShopCategoryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="SMSystemModel.Status">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="削除フラグ" ColumnName="削除フラグ" />
+                <ScalarProperty Name="役職名" ColumnName="役職名" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Territories">
+            <EntityTypeMapping TypeName="SMSystemModel.Territory">
+              <MappingFragment StoreEntitySet="Territories">
+                <ScalarProperty Name="削除フラグ" ColumnName="削除フラグ" />
+                <ScalarProperty Name="備考" ColumnName="備考" />
+                <ScalarProperty Name="エリア名" ColumnName="エリア名" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="SMSView.UI.UserControls.Shift.IndividualColumnCellsHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SMSView.UI.UserControls.Shift"
+             xmlns:uc="clr-namespace:SMSView.UI.UserControls.Shift"
+             xmlns:custom="clr-namespace:SMSView.UI.CustomControls"
+             xmlns:converter="clr-namespace:SMSViewModel.Common.Converter;assembly=SMSViewModel"
+>
+    <UserControl.Resources>
+        <converter:ShortDateTimeConverter x:Key="ShortDateTimeConverter" />
+
+
+        <Style x:Key="styleEmployeeNameInputComboBox" TargetType="custom:EmployeeNameInputComboBox">
+            <Setter Property="CanvasHeight" Value="98"/>
+            <Setter Property="CanvasWidth" Value="78"/>
+            <Setter Property="TextBoxHeight" Value="98"/>
+            <Setter Property="TextBoxWidth" Value="78"/>
+            <Setter Property="ListBoxHeight" Value="100"/>
+        </Style>
+
+        <Style x:Key="styleWorkingTimeInputComboBox" TargetType="custom:DateRowHeaderInputComboBox">
+            <Setter Property="CanvasHeight" Value="79"/>
+            <Setter Property="CanvasWidth" Value="78"/>
+            <Setter Property="TextBoxHeight" Value="79"/>
+            <Setter Property="TextBoxWidth" Value="78"/>
+            <Setter Property="ListBoxHeight" Value="240"/>
+            <Setter Property="CanEditable" Value="False" />
+        </Style>
+
+        
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Border BorderBrush="Gray" BorderThickness="1,1,1,1">
+                <custom:EmployeeNameInputComboBox Style="{StaticResource styleEmployeeNameInputComboBox}" Panel.ZIndex="2" BackSlashLineVisibility="Visible" CanEditable="False" />
+            </Border>
+
+            <StackPanel x:Name="dayWorkContainer" Orientation="Vertical" Panel.ZIndex="0">
+                <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto">
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=0}" />
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=1}" />
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=2}" />
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=3}" />
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=4}" />
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=5}" />
+                </Border>
+                <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=6}" />
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

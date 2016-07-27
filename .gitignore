@@ -1,0 +1,12 @@
+SMSystem/TestResults
+SMSystem/SMSModel/obj
+SMSystem/SMSModel/bin
+SMSystem/SMSViewModel/obj
+SMSystem/SMSViewModel/bin
+SMSystem/SMSView/obj
+SMSystem/SMSView/bin
+SMSystem/SMSViewModelTests/obj
+SMSystem/SMSViewModelTests/bin
+SMSystem/SMSViewTests/obj
+SMSystem/SMSViewTests/bin
+SMSystem/.vs

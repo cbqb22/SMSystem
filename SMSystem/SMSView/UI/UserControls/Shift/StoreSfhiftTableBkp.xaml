@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="SMSView.UI.UserControls.Shift.StoreSfhiftTableBkp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SMSView.UI.UserControls.Shift"
+             xmlns:uc="clr-namespace:SMSView.UI.UserControls.Shift"
+             xmlns:custom="clr-namespace:SMSView.UI.CustomControls"
+             xmlns:db="clr-namespace:SMSModel.DB.SMSystem;assembly=SMSModel"
+             Background="#FF2F415F"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1600"
+>
+    <UserControl.Resources>
+        <Style x:Key="gridShiftArea" TargetType="Grid">
+            <!--<Setter Property="Margin" Value="0" />-->
+        </Style>
+
+        <Style x:Key="gridHeader" TargetType="Grid">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="gridLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        
+        <Style x:Key="lineGridStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <!-- 背景色担当 -->
+                        <Grid Name="background">
+                            <!-- 前景色担当 -->
+                            <ContentControl Name="foreground">
+                                <GridViewRowPresenter VerticalAlignment="Top"/>
+                            </ContentControl>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- 選択されている場合 -->
+                            <Trigger Property="IsSelected" Value="True">
+                                <!-- 背景色をハイライト時の背景色に -->
+                                <Setter TargetName="background"  
+                                Property="Background"  
+                                Value="{x:Static SystemColors.HighlightBrush}" />
+                                <!-- 前景色をハイライト時のテキストの色に -->
+                                <Setter TargetName="foreground"   
+                                Property="Foreground"  
+                                Value="{x:Static SystemColors.HighlightTextBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+
+        <DataTemplate x:Key="dtEmployee">
+            <Grid>
+                <TextBlock Text="{Binding Employee.姓}" HorizontalAlignment="Center"/>
+                <!--<custom:EmployeeNameInputComboBox  />-->
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="dtDayWorkInput">
+            <Grid>
+
+                <uc:DayWorkInputCells />
+            </Grid>
+        </DataTemplate>
+
+
+
+        <DataTemplate x:Key="dtDayWorkInputCellsTemplate" DataType="{x:Type db:ShiftDetail}">
+            <Grid>
+                <uc:DayWorkInputCells DataContext="{Binding}"/>
+            </Grid>
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="dtListBox">
+            <Grid>
+                <StackPanel Orientation="Vertical">
+                    <Grid >
+                        <!--<TextBlock Text="{Binding Employee.姓}" HorizontalAlignment="Center"/>-->
+                        <!--<Border BorderBrush="Gray" BorderThickness="1,1,1,1">-->
+                            <custom:EmployeeNameInputComboBox  表示用文字列="{Binding  Employee.姓}" CanvasHeight="100" CanvasWidth="120" TextBoxHeight="100" TextBoxWidth="120" CanEditable="False"  />
+                        <!--</Border>-->
+                    </Grid>
+
+                    <ListView 
+                     x:Name="lbIndividualShift"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        ItemsSource="{Binding ShiftDetail}"  
+                        ItemTemplate="{StaticResource dtDayWorkInputCellsTemplate}" BorderThickness="0"/>
+                </StackPanel>
+
+            </Grid>
+        </DataTemplate>
+
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource gridHeader}">
+                <Label Content="登戸店 調剤室" Style="{StaticResource gridLabel}"/>
+                <!--TODOバインディング-->
+            </Grid>
+
+            <Grid>
+                <TextBox></TextBox>
+            </Grid>
+
+
+            <Grid Grid.Row="1" Grid.Column="0"  Style="{StaticResource gridShiftArea}">
+                <uc:IndividualColumnCellsHeader DataContext="{Binding Selector,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ShiftMainFrame}}}"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1"  Style="{StaticResource gridShiftArea}">
+                <ListView SelectionMode="Single"  x:Name="lvIndividual" ItemsSource="{Binding}" SelectionChanged="lvIndividual_SelectionChanged"  LayoutUpdated="lvIndividual_LayoutUpdated" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          Width="auto"
+                          Height="auto"
+                          ItemContainerStyle="{StaticResource lineGridStyle}"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Left"
+                          BorderThickness="0">
+                    <ListView.Template>
+                        <ControlTemplate TargetType="ItemsControl">
+                            <Border BorderThickness="0"
+                BorderBrush="Black"
+                Background="Azure">
+                                <ItemsPresenter Margin="0" />
+                            </Border>
+                        </ControlTemplate>
+                    </ListView.Template>
+                    
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Height="750" Width="1450"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.View>
+                        <GridView >
+                            <GridView.Columns >
+                                <!--<GridViewColumn CellTemplate="{StaticResource dtEmployee}" Width="30" />-->
+                                <GridViewColumn CellTemplate="{StaticResource dtListBox}"  HeaderContainerStyle="{StaticResource myHeaderStyle}"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <!--<StackPanel Orientation="Horizontal">
+                    <uc:IndividualColumnCells Panel.ZIndex="16" />
+                    <uc:IndividualColumnCells Panel.ZIndex="15" />
+                    <uc:IndividualColumnCells Panel.ZIndex="14" />
+                    <uc:IndividualColumnCells Panel.ZIndex="13" />
+                    <uc:IndividualColumnCells Panel.ZIndex="12" />
+                    <uc:IndividualColumnCells Panel.ZIndex="11" />
+                    <uc:IndividualColumnCells Panel.ZIndex="10" />
+                    <uc:IndividualColumnCells Panel.ZIndex="9" />
+                    <uc:IndividualColumnCells Panel.ZIndex="8" />
+                    <uc:IndividualColumnCells Panel.ZIndex="7" />
+                    <uc:IndividualColumnCells Panel.ZIndex="6" />
+                    <uc:IndividualColumnCells Panel.ZIndex="5" />
+                    <uc:IndividualColumnCells Panel.ZIndex="4" />
+                    <uc:IndividualColumnCells Panel.ZIndex="3" />
+                    <uc:IndividualColumnCells Panel.ZIndex="2" />
+                    <uc:IndividualColumnCells Panel.ZIndex="1" />
+                    <uc:IndividualColumnCells Panel.ZIndex="0" />
+                </StackPanel>-->
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

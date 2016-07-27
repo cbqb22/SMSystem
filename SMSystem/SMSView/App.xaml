@@ -1,0 +1,19 @@
+﻿<Application x:Class="SMSView.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SMSView"
+             Startup="Application_Startup"
+             StartupUri="/UI/Windows/Menu.xaml">
+    <!--StartupUri="/UI/Windows/Menu.xaml-->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BitmapImage x:Key="WindowIcon" UriSource="pack://application:,,,/MIC.ico" />
+        </ResourceDictionary>
+    </Application.Resources>
+    
+    
+
+</Application>

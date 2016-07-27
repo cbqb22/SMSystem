@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="Shift_JIS"?> <!--★これを追加すると日本語文字が使える-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SMSViewModel.UI.Windows;assembly=SMSViewModel"
+    xmlns:local2="clr-namespace:SMSView.UI.CustomControls"
+    >
+    <Style TargetType="{x:Type local:BaseWindow}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:BaseWindow}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Button Content="If you want to this template , comment out OverideMetadata on code behind." Width="50" Height="50" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="listboxItemStyle">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding listbox.IsSelected}" Value="true">
+                <Setter Property="ListBoxItem.Background" Value="Green">
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding listbox.IsMouseOver}" Value="true">
+                <Setter Property="ListBoxItem.Background" Value="AliceBlue">
+                </Setter>
+            </DataTrigger>
+
+        </Style.Triggers>
+    </Style>
+
+
+    <Style TargetType="{x:Type local2:InputComboBoxBase}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local2:InputComboBoxBase}">
+                    <Border 
+                            Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            >
+                        <!--<Border.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsFirstFocus}" Value="true">
+                                        <Setter Property="Border.BorderBrush" Value="Green" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>-->
+
+                        <Grid>
+                            <Canvas Width="{TemplateBinding CanvasWidth}" Height="{TemplateBinding CanvasHeight}">
+
+                                <StackPanel Orientation="Vertical" Canvas.Left="0" Canvas.Top="0">
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBox
+                Text="{Binding Path=表示用文字列,Mode=TwoWay}"
+								Name="textbox"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Center"
+								VerticalContentAlignment="Center"
+								BorderThickness="0"
+								Margin="0"
+                                            IsEnabled="{Binding Path=CanEditable}"
+                                            Width="{Binding Path=TextBoxWidth}"
+                                            Height="{Binding Path=TextBoxHeight}"
+                                            >
+
+                                            <TextBox.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsFirstFocus}" Value="true">
+
+                                                            <Setter Property="TextBox.Background" Value="#ffffcc" />
+                                                            <!--<Setter Property="TextBox.Width" Value="30" />-->
+
+                                                            <!--<Setter Property="TextBox.Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="TextBox">
+                                                                        <TextBox Margin="0,0,0,0" Height="{Binding TextBoxHeight}" Width="{Binding TextBoxWidth}" Background="#ffffcc" TextAlignment="Center" Text="{Binding Path=表示用文字列}"  VerticalAlignment="Center" Foreground="Black" />
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>-->
+
+                                                        </DataTrigger>
+
+                                                        <DataTrigger Binding="{Binding IsFirstFocus}" Value="false">
+                                                            <Setter Property="TextBox.Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="TextBox">
+                                                                        <Label Height="{Binding TextBoxHeight}" Width="{Binding TextBoxWidth}" Background="White" Content="{Binding Path=表示用文字列}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="Black" />
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+
+                                        <Button Name="button"
+                                                FontSize="10"
+                                        Content="▼"
+                                    >
+
+                                            <Button.Style>
+                                                <Style>
+
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding CanEditable}" Value="false">
+                                                            <Setter Property="Button.Visibility" Value="Hidden">
+                                                            </Setter>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsFirstFocus}" Value="false">
+                                                            <Setter Property="Button.Visibility" Value="Hidden">
+                                                            </Setter>
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+
+
+
+                                        </Button>
+
+                                    </StackPanel>
+                                    <Grid>
+
+
+                                        <ListBox Name="listbox" Width="Auto" Height="{Binding ListBoxHeight}" ItemsSource="{Binding ListBoxItemSource}">
+                                            <!--<ListBoxItem.Style>
+                                                    <Style>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsMouseOver}" Value="true">
+                                                                <Setter Property="ListBoxItem.Background" Value="AliceBlue">
+                                                                </Setter>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsSelected}" Value="true">
+                                                                <Setter Property="ListBoxItem.Background" Value="Green">
+                                                                </Setter>
+                                                            </DataTrigger>
+
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </ListBoxItem.Style>-->
+                                            <!--2</ListBoxItem>
+
+                                            <ListBox.Style>-->
+                                            <!--<Style>-->
+                                            <!-- Visilityの設定はコントロールに直接設定されているものが優先されるため、トリガーは× -->
+                                            <!--Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsListBoxDisplay}" Value="false">
+                                                            <Setter Property="ListBox.Visibility" Value="Hidden" />
+                                                        </DataTrigger>
+
+                                                        <DataTrigger Binding="{Binding IsListBoxDisplay}" Value="true">
+                                                            <Setter Property="ListBox.Visibility" Value="Visible" />
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers-->
+                                            <!--</Style>
+                                            </ListBox.Style>-->
+
+                                        </ListBox>
+                                    </Grid>
+
+                                </StackPanel>
+                                <Line Stroke="Gray" StrokeThickness="2" X1="0" Y1="0" X2="{TemplateBinding CanvasWidth}" Y2="{TemplateBinding CanvasHeight}" Visibility="{TemplateBinding BackSlashLineVisibility}"/>
+                                <Line Stroke="Gray" StrokeThickness="2" X1="{TemplateBinding CanvasWidth}"  Y1="0" X2="0" Y2="{TemplateBinding CanvasHeight}" Visibility="{TemplateBinding SlashLineVisibility}"/>
+                            </Canvas>
+                        </Grid>
+
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+
+
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

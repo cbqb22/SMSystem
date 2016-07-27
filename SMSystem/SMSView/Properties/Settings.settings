@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SMSView.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SMSystemRootFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\SMSystem</Value>
+    </Setting>
+    <Setting Name="SettingsConfigPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\SMSystem\Settings.config</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
