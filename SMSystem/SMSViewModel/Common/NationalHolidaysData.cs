@@ -21,6 +21,7 @@ namespace SMSViewModel.Common
             this.Add(new NationalHolidayData(5, 4, "みどりの日", 2007, SMSConst.SMS_DATE_MAX.Year));
             this.Add(new NationalHolidayData(5, 5, "こどもの日"));
             this.Add(new NationalHolidayData(7, 3, DayOfWeek.Monday, "海の日"));
+            this.Add(new NationalHolidayData(8, 11, "山の日", 2016, SMSConst.SMS_DATE_MAX.Year));
             this.Add(new NationalHolidayData(9, 3, DayOfWeek.Monday, "敬老の日"));
             // this.Add(new NationalHolidayData(9, 23, "秋分の日"));
             this.Add(new NationalHolidayData(10, 2, DayOfWeek.Monday, "体育の日"));
@@ -41,6 +42,119 @@ namespace SMSViewModel.Common
             }
         }
 
+
+        /// <summary>
+        /// 振替休日かどうか
+        /// 直近過去の月曜日から計算
+        /// 
+        /// 国民の祝日に関する法律第三条2項には、「『国民の祝日』が日曜日に当たるときは、その日後においてその日に最も近い「国民の祝日」でない日を休日とする」
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public bool IsCompensatoryHoliday(int year, int month, int day)
+        {
+            DateTime todayDt =  new DateTime(year, month, day);
+            DateTime recentlyMondayDate;
+
+
+            switch (todayDt.DayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    recentlyMondayDate = todayDt.AddDays(-6);
+                    break;
+                case DayOfWeek.Monday:
+                    recentlyMondayDate = todayDt.AddDays(0);
+                    break;
+                case DayOfWeek.Tuesday:
+                    recentlyMondayDate = todayDt.AddDays(-1);
+                    break;
+                case DayOfWeek.Wednesday:
+                    recentlyMondayDate = todayDt.AddDays(-2);
+                    break;
+                case DayOfWeek.Thursday:
+                    recentlyMondayDate = todayDt.AddDays(-3);
+                    break;
+                case DayOfWeek.Friday:
+                    recentlyMondayDate = todayDt.AddDays(-4);
+                    break;
+                case DayOfWeek.Saturday:
+                    recentlyMondayDate = todayDt.AddDays(-5);
+                    break;
+                default:
+                    throw new Exception("曜日が存在しません。");
+            }
+
+            DateTime recentlySundayDate = recentlyMondayDate.AddDays(-1);
+            var monday = GetData(recentlyMondayDate.Year, recentlyMondayDate.Month, recentlyMondayDate.Day);
+            var sunday = GetData(recentlySundayDate.Year, recentlySundayDate.Month, recentlySundayDate.Day);
+
+            //日曜日が祝日でない
+            if (sunday == null)
+            {
+                return false;
+            }
+
+            //以下、振替日の持ち越しが発生
+
+
+            if (monday == null)
+            {
+                if(recentlyMondayDate == todayDt)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            //振替休日ではないけど、指定日は祝日だったパターン
+            if (recentlyMondayDate == todayDt)
+            {
+                return false;
+            }
+
+
+            int couter = 0;
+            DateTime dt = recentlyMondayDate;
+            while (dt != todayDt)
+            {
+                couter++;
+                dt = dt.AddDays(couter);
+                var holiday = GetData(dt.Year, dt.Month, dt.Day);
+                if (holiday == null)
+                {
+                    if(dt == todayDt)
+                    {
+                        return true;
+                    }
+                }
+
+                //振替休日ではないけど、指定日は祝日だったパターン
+                if (dt == todayDt)
+                {
+                    return false;
+                }
+
+                continue;
+
+            }
+
+            throw new Exception("予期しないデータが指定されている為、エラーが発生しました。");
+
+
+        }
+
+        /// <summary>
+        /// 指定の年月日で祝日が該当すれば返す。
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <returns>無ければnull</returns>
         public NationalHolidayData GetData(int year, int month, int day)
         {
             foreach (NationalHolidayData d in this)

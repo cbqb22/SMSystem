@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Data;
+using SMSViewModel.Common;
 
 namespace SMSViewModel.Common.Converter
 {
@@ -78,6 +79,11 @@ namespace SMSViewModel.Common.Converter
                     break;
             }
 
+            if(CheckNationalHoliday(dt))
+            {
+                color = new SolidColorBrush(Colors.Red);
+            }
+
             return color;
 
 
@@ -94,6 +100,22 @@ namespace SMSViewModel.Common.Converter
             return value;
 
     
+        }
+
+        private bool CheckNationalHoliday(DateTime date)
+        {
+            if(NationalHolidaysData.I.GetData(date.Year, date.Month, date.Day) == null)
+            {
+                //振替休日かチェック
+                if(NationalHolidaysData.I.IsCompensatoryHoliday(date.Year, date.Month, date.Day))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
     }
