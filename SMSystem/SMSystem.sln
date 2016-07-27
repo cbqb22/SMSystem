@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSViewModel", "SMSViewMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSModel", "SMSModel\SMSModel.csproj", "{B4D23FFF-8692-4D06-85D3-406830D7F34F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSViewModelTests", "SMSViewModelTests\SMSViewModelTests.csproj", "{E67A8445-AACE-4BEE-937D-BF6BEDB65C9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSViewModelTests", "SMSViewModelTests\SMSViewModelTests.csproj", "{41FE7EB5-E716-43FD-9E8F-592C36F1D06A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{B4D23FFF-8692-4D06-85D3-406830D7F34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4D23FFF-8692-4D06-85D3-406830D7F34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4D23FFF-8692-4D06-85D3-406830D7F34F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E67A8445-AACE-4BEE-937D-BF6BEDB65C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E67A8445-AACE-4BEE-937D-BF6BEDB65C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E67A8445-AACE-4BEE-937D-BF6BEDB65C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E67A8445-AACE-4BEE-937D-BF6BEDB65C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41FE7EB5-E716-43FD-9E8F-592C36F1D06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41FE7EB5-E716-43FD-9E8F-592C36F1D06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41FE7EB5-E716-43FD-9E8F-592C36F1D06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41FE7EB5-E716-43FD-9E8F-592C36F1D06A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
