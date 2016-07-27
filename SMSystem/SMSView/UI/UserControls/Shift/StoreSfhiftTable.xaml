@@ -76,7 +76,7 @@
             <Grid Grid.Row="1" Grid.Column="1"  Style="{StaticResource gridShiftArea}">
                 <ScrollViewer Style="{StaticResource styleScrollViewer}">
                     <StackPanel Orientation="Horizontal">
-                        <uc:IndividualColumnCells Panel.ZIndex="12" DataContext="{Binding [0]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="12" DataContext="{Binding [0]}" />
                         <uc:IndividualColumnCells Panel.ZIndex="11" DataContext="{Binding [1]}"/>
                         <uc:IndividualColumnCells Panel.ZIndex="10" DataContext="{Binding [2]}"/>
                         <uc:IndividualColumnCells Panel.ZIndex="9" DataContext="{Binding [3]}"/>

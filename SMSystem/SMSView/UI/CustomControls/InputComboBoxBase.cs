@@ -163,6 +163,20 @@ namespace SMSView.UI.CustomControls
         }
 
 
+        /// <summary>
+        /// 表示用文字列Color
+        /// デフォルトは黒
+        /// /// </summary>
+        public static readonly DependencyProperty 表示用文字列ColorProperty = DependencyProperty.Register("表示用文字列Color", typeof(SolidColorBrush), typeof(InputComboBoxBase),new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+
+        public SolidColorBrush 表示用文字列Color
+        {
+            get { return (SolidColorBrush)this.GetValue(表示用文字列ColorProperty); }
+            set { this.SetValue(表示用文字列Property, value); }
+        }
+
+
+
 
         #endregion
 
@@ -367,6 +381,11 @@ namespace SMSView.UI.CustomControls
             }
         }
 
+        public virtual void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBox.SelectAll();
+        }
+
 
         #endregion
         #region 子クラスで実装するもの
@@ -422,14 +441,11 @@ namespace SMSView.UI.CustomControls
 
             _TextBoxBaseWidth = TextBoxWidth;
 
-            #endregion
 
         }
 
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            textBox.SelectAll();
-        }
+        #endregion
+
 
 
         #region INotifyPropertyChangedの実装

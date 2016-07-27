@@ -22,7 +22,7 @@
     
     <Grid>
         <StackPanel Orientation="Vertical">
-            <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Panel.ZIndex="1">
+            <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Panel.ZIndex="1" GotFocus="Border_GotFocus" LostFocus="Border_LostFocus">
                 <custom:EmployeeNameInputComboBox 表示用文字列="{Binding Path=Employee.姓}" Style="{StaticResource styleEmployeeNameInputComboBox}"/>
             </Border>
 

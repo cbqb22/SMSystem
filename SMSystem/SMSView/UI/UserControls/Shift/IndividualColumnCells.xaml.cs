@@ -25,5 +25,27 @@ namespace SMSView.UI.UserControls.Shift
             InitializeComponent();
         }
 
+        private void Border_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var border = sender as Border;
+            if(border == null)
+            {
+                return;
+            }
+
+            border.BorderBrush = new SolidColorBrush(Colors.Green);
+        }
+
+        private void Border_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var border = sender as Border;
+            if (border == null)
+            {
+                return;
+            }
+
+            border.BorderBrush = new SolidColorBrush(Colors.Gray);
+
+        }
     }
 }

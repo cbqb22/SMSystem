@@ -78,8 +78,5 @@ namespace SMSView.UI.UserControls.Shift
 
         }
 
-
-
-
     }
 }

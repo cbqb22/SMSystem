@@ -31,6 +31,15 @@ namespace SMSView.UI.UserControls.Calendaer
 
         }
 
+
+        #region コマンド一覧
+        public static readonly ICommand WeekUpCommand = new DateSpanSelectorCommands.WeekUpCommand();
+        public static readonly ICommand WeekDownCommand = new DateSpanSelectorCommands.WeekDownCommand();
+        public static readonly ICommand MonthUpCommand = new DateSpanSelectorCommands.MonthUpCommand();
+        public static readonly ICommand MonthDownCommand = new DateSpanSelectorCommands.MonthDownCommand();
+        #endregion
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 

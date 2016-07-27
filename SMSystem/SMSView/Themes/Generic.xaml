@@ -96,7 +96,7 @@
                                                             <Setter Property="TextBox.Template">
                                                                 <Setter.Value>
                                                                     <ControlTemplate TargetType="TextBox">
-                                                                        <Label Height="{Binding TextBoxHeight}" Width="{Binding TextBoxWidth}" Background="White" Content="{Binding Path=表示用文字列}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="Black" />
+                                                                        <Label Height="{Binding TextBoxHeight}" Width="{Binding TextBoxWidth}" Background="White" Foreground="{Binding Path=表示用文字列Color}" Content="{Binding Path=表示用文字列}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" />
                                                                     </ControlTemplate>
                                                                 </Setter.Value>
                                                             </Setter>

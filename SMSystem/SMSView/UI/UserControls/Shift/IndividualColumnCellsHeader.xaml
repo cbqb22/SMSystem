@@ -10,6 +10,7 @@
 >
     <UserControl.Resources>
         <converter:ShortDateTimeConverter x:Key="ShortDateTimeConverter" />
+        <converter:ShortDateTimeColorConverter x:Key="ShortDateTimeColorConverter" />
 
 
         <Style x:Key="styleEmployeeNameInputComboBox" TargetType="custom:EmployeeNameInputComboBox">
@@ -39,25 +40,25 @@
 
             <StackPanel x:Name="dayWorkContainer" Orientation="Vertical" Panel.ZIndex="0">
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto">
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=0}" />
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=0}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=0}" />
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=1}" />
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=1}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=1}" />
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=2}" />
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=2}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=2}" />
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=3}" />
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=3}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=3}" />
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=4}" />
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=4}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=4}" />
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=5}" />
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=5}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=5}" />
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=6}" />
+                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=6}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=6}" />
                 </Border>
             </StackPanel>
         </StackPanel>
