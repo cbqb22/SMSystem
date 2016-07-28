@@ -32,7 +32,7 @@
         </Style>
 
         <Style x:Key="styleScrollViewer" TargetType="ScrollViewer">
-            <Setter Property="Width" Value="1500" />
+            <Setter Property="Width" Value="1490" />
             <Setter Property="Height" Value="660" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -71,23 +71,23 @@
 
 
             <Grid Grid.Row="1" Grid.Column="0"  Style="{StaticResource gridShiftArea}">
-                <uc:IndividualColumnCellsHeader DataContext="{Binding Selector,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ShiftMainFrame}}}"/>
+                <uc:IndividualColumnCellsHeader DataContext="{Binding Selector,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ShiftMainFrame}}}" BorderThickness="1"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1"  Style="{StaticResource gridShiftArea}">
                 <ScrollViewer Style="{StaticResource styleScrollViewer}">
                     <StackPanel Orientation="Horizontal">
-                        <uc:IndividualColumnCells Panel.ZIndex="12" DataContext="{Binding [0]}" />
-                        <uc:IndividualColumnCells Panel.ZIndex="11" DataContext="{Binding [1]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="10" DataContext="{Binding [2]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="9" DataContext="{Binding [3]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="8" DataContext="{Binding [4]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="7" DataContext="{Binding [5]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="6" DataContext="{Binding [6]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="5" DataContext="{Binding [7]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="4" DataContext="{Binding [8]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="3" DataContext="{Binding [9]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="2" DataContext="{Binding [10]}"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="1" DataContext="{Binding [11]}"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="12" DataContext="{Binding [0]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="11" DataContext="{Binding [1]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="10" DataContext="{Binding [2]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="9" DataContext="{Binding [3]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="8" DataContext="{Binding [4]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="7" DataContext="{Binding [5]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="6" DataContext="{Binding [6]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="5" DataContext="{Binding [7]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="4" DataContext="{Binding [8]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="3" DataContext="{Binding [9]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="2" DataContext="{Binding [10]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells Panel.ZIndex="1" DataContext="{Binding [11]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

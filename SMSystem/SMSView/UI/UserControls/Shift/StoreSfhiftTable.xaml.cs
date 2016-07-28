@@ -78,5 +78,28 @@ namespace SMSView.UI.UserControls.Shift
 
         }
 
+        private void IndividualColumnCells_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var icc = sender as IndividualColumnCells;
+            if (icc == null)
+            {
+                return;
+            }
+
+            icc.BorderBrush = new SolidColorBrush(Colors.Red);
+
+        }
+
+        private void IndividualColumnCells_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var icc = sender as IndividualColumnCells;
+            if (icc == null)
+            {
+                return;
+            }
+
+            icc.BorderBrush = new SolidColorBrush(Colors.Black);
+
+        }
     }
 }
