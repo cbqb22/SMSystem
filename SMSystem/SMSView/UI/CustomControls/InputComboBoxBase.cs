@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Windows.Controls.Primitives;
 using SMSView.UI.UserControls.Calendaer;
 
 
@@ -103,7 +104,7 @@ namespace SMSView.UI.CustomControls
         //}
 
 
-        public static readonly DependencyProperty ListBoxHeightProperty = DependencyProperty.Register("ListBoxHeight", typeof(double), typeof(InputComboBoxBase), new PropertyMetadata(80d));
+        public static readonly DependencyProperty ListBoxHeightProperty = DependencyProperty.Register("ListBoxHeight", typeof(double), typeof(InputComboBoxBase), new PropertyMetadata(160d));
 
         public double ListBoxHeight
         {
@@ -222,6 +223,20 @@ namespace SMSView.UI.CustomControls
         }
 
 
+        private Popup popup;
+        public Popup Popup
+        {
+            get
+            {
+                return popup;
+            }
+
+            set
+            {
+                popup = value;
+            }
+        }
+
 
         #endregion
         #region 汎用プロパティ
@@ -289,8 +304,10 @@ namespace SMSView.UI.CustomControls
             {
                 _IsKeyboardFocus = value;
                 OnPropertyChanged("IsKeyboardFocus");
+                //System.Windows.Controls.Primitives.Popup p;
             }
         }
+
 
 
         /// <summary>
@@ -371,12 +388,14 @@ namespace SMSView.UI.CustomControls
         {
             if (this.IsListBoxDisplay)
             {
+                this.popup.IsOpen = false;
                 this.IsListBoxDisplay = false;
                 this.listbox.Visibility = System.Windows.Visibility.Collapsed;
 
             }
             else
             {
+                this.popup.IsOpen = true;
                 this.IsListBoxDisplay = true;
                 this.listbox.Visibility = System.Windows.Visibility.Visible;
             }
@@ -399,6 +418,8 @@ namespace SMSView.UI.CustomControls
         public abstract void listbox_LostFocus(object sender, RoutedEventArgs e);
 
         public abstract void listbox_GotFocus(object sender, RoutedEventArgs e);
+
+        public abstract void Popup_Loaded(object sender, RoutedEventArgs e);
 
         #endregion
 
@@ -437,6 +458,10 @@ namespace SMSView.UI.CustomControls
             border = (Border)GetTemplateChild("border");
             border.DataContext = this;
 
+            popup = (Popup)GetTemplateChild("popup");
+            popup.DataContext = this;
+            popup.Loaded += new RoutedEventHandler(Popup_Loaded);
+
 
 
             this.textBox.Visibility = Visibility.Visible;
@@ -447,6 +472,7 @@ namespace SMSView.UI.CustomControls
 
 
         }
+
 
         #endregion
 

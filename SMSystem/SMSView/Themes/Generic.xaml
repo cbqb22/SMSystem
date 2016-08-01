@@ -126,8 +126,9 @@
 
                                     </StackPanel>
                                     <Grid>
+                                        <!--<ListBox Name="listbox" Width="Auto" Height="{Binding ListBoxHeight}" ItemsSource="{Binding ListBoxItemSource}" ItemContainerStyle="{StaticResource listboxItemStyle}" />-->
 
-                                        <Popup IsOpen="True"  StaysOpen="False" Width="{Binding CanvasWidth}">
+                                        <Popup Name="popup" IsOpen="False"  StaysOpen="False" Width="{Binding CanvasWidth}">
                                             <ListBox Name="listbox" Width="Auto" Height="{Binding ListBoxHeight}" ItemsSource="{Binding ListBoxItemSource}" ItemContainerStyle="{StaticResource listboxItemStyle}" />
                                         </Popup>
                                     </Grid>

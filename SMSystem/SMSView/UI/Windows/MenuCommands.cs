@@ -42,7 +42,8 @@ namespace SMSView.UI.Windows
                 Type type = parameter as Type;
                 var win = SingletonWindowsManager.GetorMakeWindow<BaseWindow>(type);
                 win.Show();
-
+                win.WindowState = WindowState.Normal;
+                win.Activate();
                 ////メニューは最小化
                 //var menu = SingletonWindowsManager.GetorMakeWindow<Menu>(typeof(Menu));
                 //menu.WindowState = WindowState.Minimized;

@@ -59,8 +59,8 @@ namespace SMSViewModel.Common.Converter
 
 
                 double d = minitune / 60;
-
-                return string.Format("{0}{1}{2}",hour,d == 0 ? "" : ".", d == 0 ? "" : d.ToString());
+                string str = string.Format("{0}{1}{2}", hour, d == 0 ? "" : ".", d == 0 ? "" : d.ToString());
+                return str;
 
             }
             catch

@@ -72,8 +72,6 @@
 
             <Grid Grid.Row="1" Grid.Column="0"  Style="{StaticResource gridShiftArea}">
                 <uc:IndividualColumnCellsHeader BorderThickness="1"/>
-                <!--<custom:WorkingTimeInputComboBox CanvasWidth="40" CanvasHeight="40" TextBoxHeight="40" TextBoxWidth="40"  ListBoxHeight="80" CanEditable="True" SlashLineVisibility="Collapsed" BackSlashLineVisibility="Collapsed"  表示用文字列="aa" 表示用文字列Color="AliceBlue"/>
-                <custom:WorkingTimeInputComboBox CanvasWidth="40" CanvasHeight="40" TextBoxHeight="40" TextBoxWidth="40"  ListBoxHeight="80" CanEditable="True" SlashLineVisibility="Collapsed" BackSlashLineVisibility="Collapsed"  表示用文字列="aa" 表示用文字列Color="AliceBlue"/>-->
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1"  Style="{StaticResource gridShiftArea}">
                 <ScrollViewer Style="{StaticResource styleScrollViewer}">
@@ -89,7 +87,6 @@
                         <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[8]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
                         <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[9]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
                         <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[10]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[11]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

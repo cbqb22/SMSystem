@@ -15,7 +15,7 @@
             <Setter Property="CanvasWidth" Value="118"/>
             <Setter Property="TextBoxHeight" Value="98"/>
             <Setter Property="TextBoxWidth" Value="118"/>
-            <Setter Property="ListBoxHeight" Value="100"/>
+            <Setter Property="ListBoxHeight" Value="150"/>
         </Style>
 
     </UserControl.Resources>
@@ -27,13 +27,13 @@
             </Border>
 
             <StackPanel x:Name="dayWorkContainer" Orientation="Vertical" Panel.ZIndex="0">
-                <uc:DayWorkInputCells  Panel.ZIndex="7" BorderThickness="0,0,0,1" BorderBrush="Gray" />
-                <uc:DayWorkInputCells  Panel.ZIndex="6" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
-                <uc:DayWorkInputCells  Panel.ZIndex="5" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
-                <uc:DayWorkInputCells  Panel.ZIndex="4" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
-                <uc:DayWorkInputCells  Panel.ZIndex="3" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
-                <uc:DayWorkInputCells  Panel.ZIndex="2" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
-                <uc:DayWorkInputCells  Panel.ZIndex="1" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
+                <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[0]}" BorderThickness="0,0,0,1" BorderBrush="Gray" />
+                <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[1]}" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
+                <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[2]}" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
+                <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[3]}" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
+                <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[4]}" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
+                <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[5]}" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
+                <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[6]}" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
             </StackPanel>
         </StackPanel>
             

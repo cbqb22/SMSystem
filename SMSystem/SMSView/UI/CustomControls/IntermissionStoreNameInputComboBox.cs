@@ -32,11 +32,15 @@ namespace SMSView.UI.CustomControls
         public override void textBox_Loaded(object sender, RoutedEventArgs e)
         {
         }
+        public override void Popup_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+
 
         /// <summary>
         /// リストボックスのアイテムソース
         /// </summary>
-        private  List<string> _ListBoxItemSource;
+        private List<string> _ListBoxItemSource;
         public new List<string> ListBoxItemSource
         {
             get

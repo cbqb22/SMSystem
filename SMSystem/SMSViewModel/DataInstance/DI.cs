@@ -70,9 +70,9 @@ namespace SMSViewModel.DataInstance
                 public SMSystem()
                 {
                     //データを読込み
+                    //不足Rowを挿入
                     this.Load();
 
-                    //不足Rowを挿入
 
                 }
 
@@ -111,7 +111,7 @@ namespace SMSViewModel.DataInstance
                             
                         }
 
-                        return GetEmployeeShiftByDateTime((DateTime)UI.Instance.ShiftInstance.SelectedDate, 7);
+                        return GetEmployeeShiftDetailByDateTime((DateTime)UI.Instance.ShiftInstance.SelectedDate, 7);
 
                     }
                 }
@@ -119,11 +119,11 @@ namespace SMSViewModel.DataInstance
 
                 /// <summary>
                 /// 指定のタイプのリストをロード
+                /// 不足のRowを追加する
                 /// </summary>
                 /// <param name="type"></param>
                 public void Load<T>() where T : class
                 {
-                    //var aa = context.Employees.Include("Shifts.ShiftDetails").Include("Shop").Include("Status").Include("Territory").ToList();
                     try
                     {
                         using (var context = new SMSystemEntities())
@@ -133,8 +133,8 @@ namespace SMSViewModel.DataInstance
                             //System.Diagnostics.Debug.WriteLine("------------ログ開始--------------");
                             //context.Database.Log = (sql) => { System.Diagnostics.Debug.Write(sql); };   //SQLを出す
 
-                            DateTime startDate = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day).AddDays(-1);
-                            DateTime endDate = startDate.AddDays(2);
+                            DateTime startDate = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day).AddMonths(-2);
+                            DateTime endDate = startDate.AddMonths(4);
 
                             if (typeof(T) == typeof(Employee))
                             {
@@ -167,36 +167,6 @@ namespace SMSViewModel.DataInstance
                                         }
                                     }
                                  
-                                       
-
-                                    ////EmployeeIDごとにグループ化
-                                    //foreach (var group in query.GroupBy(x => x.Employee))
-                                    //{
-                                    //    bool find = false;
-                                    //    foreach (var row in group)
-                                    //    {
-                                    //        if (row.WorkingDate == d)
-                                    //        {
-                                    //            find = true;
-                                    //            break;
-                                    //        }
-                                    //    }
-
-                                    //    if (find)
-                                    //    {
-                                    //        continue;
-                                    //    }
-
-
-                                    //    //TODO DutyCategoryID,StartTimeなどををnull許可する
-                                    //    ShiftDetail sd = new ShiftDetail() { EmployeeID = group.Key.ID, ShopID = group.Key.ShopID, DutyCategoryID = 1, IsHoliday = false, WorkingDate = d, StartTime = "-", EndTime = "-", Intermission1 = "-", Intermission2 = "-", TravelTime1 = "-", TravelTime2 = "-", IsHelpStaff = false, 登録日時 = DateTime.Now };
-
-                                    //    shiftdetals.Add(sd);
-
-                                    //}
-
-
-
                                 }
 
 
@@ -243,7 +213,7 @@ namespace SMSViewModel.DataInstance
                 /// <param name="datetime"></param>
                 /// <param name="days"></param>
                 /// <returns></returns>
-                public List<EmployeeShiftDetail> GetEmployeeShiftByDateTime(DateTime datetime,int days)
+                public List<EmployeeShiftDetail> GetEmployeeShiftDetailByDateTime(DateTime datetime,int days)
                 {
                     DateTime dt = new DateTime(datetime.Year, datetime.Month, datetime.Day);
 
@@ -283,7 +253,7 @@ namespace SMSViewModel.DataInstance
                             _Employee = value;
                         }
                     }
-
+                    private List<ShiftDetail> _ShiftDetails;
                     public List<ShiftDetail> ShiftDetails
                     {
                         get
@@ -297,77 +267,8 @@ namespace SMSViewModel.DataInstance
                         }
                     }
 
-                    private List<ShiftDetail> _ShiftDetails;
 
                 }
-
-                //public static List<T> Instance
-                //{
-                //    get
-                //    {
-
-                //        try
-                //        {
-
-                //            var sps = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
-                //            using (var instance = new SMSystemEntities())
-                //            {
-
-                //                var l = instance.Employees.Local;
-                //                var i = instance.Set<T>().ToList();
-
-                //                return i;
-
-
-                //            }
-                //        }
-                //        catch (Exception ex)
-                //        {
-                //            throw ex;
-                //        }
-
-
-
-                //        //if (_Instance == null)
-                //        //{
-
-
-                //        //    //仮のデータを挿入
-                //        //    //using (_Instance = new SMSystemEntities())
-                //        //    //{
-
-
-                //        //    //    _Instance.Configuration.AutoDetectChangesEnabled = false;
-                //        //    //    int id = 1;
-                //        //    //    int statudId = 1;
-                //        //    //    int territoryId = 1;
-                //        //    //    Employee ee = new Employee() {ID= id++, 姓= "三上", 名 = "雅史", 性別 = false, Shifts = null, Status = null, StatusID = statudId++, Territory = null, TerritoryID = territoryId++, Eメールアドレス = "", ホームページ = "",住所 = "", 備考 = "",削除フラグ = false, 外国人フラグ = false, 携帯メールアドレス = "",携帯電話番号 = "",生年月日 = new DateTime(1982,9,30), 登録日時 = DateTime.Now, 自宅電話番号 = "",郵便番号 = "214-0014"};
-                //        //    //    _Instance.Employees.Add(ee);
-                //        //    //    ee = new Employee() { ID = id++, 姓 = "三上", 名 = "雅史", 性別 = false, Shifts = null, Status = null, StatusID = statudId++, Territory = null, TerritoryID = territoryId++, Eメールアドレス = "", ホームページ = "", 住所 = "", 備考 = "", 削除フラグ = false, 外国人フラグ = false, 携帯メールアドレス = "", 携帯電話番号 = "", 生年月日 = new DateTime(1982, 9, 30), 登録日時 = DateTime.Now, 自宅電話番号 = "", 郵便番号 = "214-0014" };
-                //        //    //    _Instance.Employees.Add(ee);
-                //        //    //    ee = new Employee() { ID = id++, 姓 = "三上", 名 = "雅史", 性別 = false, Shifts = null, Status = null, StatusID = statudId++, Territory = null, TerritoryID = territoryId++, Eメールアドレス = "", ホームページ = "", 住所 = "", 備考 = "", 削除フラグ = false, 外国人フラグ = false, 携帯メールアドレス = "", 携帯電話番号 = "", 生年月日 = new DateTime(1982, 9, 30), 登録日時 = DateTime.Now, 自宅電話番号 = "", 郵便番号 = "214-0014" };
-                //        //    //    _Instance.Employees.Add(ee);
-                //        //    //    ee = new Employee() { ID = id++, 姓 = "三上", 名 = "雅史", 性別 = false, Shifts = null, Status = null, StatusID = statudId++, Territory = null, TerritoryID = territoryId++, Eメールアドレス = "", ホームページ = "", 住所 = "", 備考 = "", 削除フラグ = false, 外国人フラグ = false, 携帯メールアドレス = "", 携帯電話番号 = "", 生年月日 = new DateTime(1982, 9, 30), 登録日時 = DateTime.Now, 自宅電話番号 = "", 郵便番号 = "214-0014" };
-                //        //    //    _Instance.Employees.Add(ee);
-                //        //    //    ee = new Employee() { ID = id++, 姓 = "三上", 名 = "雅史", 性別 = false, Shifts = null, Status = null, StatusID = statudId++, Territory = null, TerritoryID = territoryId++, Eメールアドレス = "", ホームページ = "", 住所 = "", 備考 = "", 削除フラグ = false, 外国人フラグ = false, 携帯メールアドレス = "", 携帯電話番号 = "", 生年月日 = new DateTime(1982, 9, 30), 登録日時 = DateTime.Now, 自宅電話番号 = "", 郵便番号 = "214-0014" };
-                //        //    //    _Instance.Employees.Add(ee);
-                //        //    //    ee = new Employee() { ID = id++, 姓 = "三上", 名 = "雅史", 性別 = false, Shifts = null, Status = null, StatusID = statudId++, Territory = null, TerritoryID = territoryId++, Eメールアドレス = "", ホームページ = "", 住所 = "", 備考 = "", 削除フラグ = false, 外国人フラグ = false, 携帯メールアドレス = "", 携帯電話番号 = "", 生年月日 = new DateTime(1982, 9, 30), 登録日時 = DateTime.Now, 自宅電話番号 = "", 郵便番号 = "214-0014" };
-                //        //    //    _Instance.Employees.Add(ee);
-                //        //    //    ee = new Employee() { ID = id++, 姓 = "三上", 名 = "雅史", 性別 = false, Shifts = null, Status = null, StatusID = statudId++, Territory = null, TerritoryID = territoryId++, Eメールアドレス = "", ホームページ = "", 住所 = "", 備考 = "", 削除フラグ = false, 外国人フラグ = false, 携帯メールアドレス = "", 携帯電話番号 = "", 生年月日 = new DateTime(1982, 9, 30), 登録日時 = DateTime.Now, 自宅電話番号 = "", 郵便番号 = "214-0014" };
-                //        //    //    _Instance.Employees.Add(ee);
-
-                //        //    //}
-
-                //        //}
-
-                //        //return _Instance;
-                //    }
-
-                //    //set
-                //    //{
-                //    //    _Instance = value;
-                //    //}
-                //}
             }
         }
 
@@ -470,8 +371,23 @@ namespace SMSViewModel.DataInstance
 
                     set
                     {
+                        int DisplaySpan = 7; //シフト表示期間
+                        TimeSpan sabun = new TimeSpan();
+                        if (_SelectedDate != null && value != null)
+                        {
+                            sabun = (DateTime)value - (DateTime)_SelectedDate;
+                        }
+
+
                         _SelectedDate = value;
                         FirePropertyChanged("SelectedDate");
+
+                        if(sabun.TotalDays != 0)
+                        {
+
+                            EmployeeShiftDetailList = Data.DB.Instance.SMSystemInstance.GetEmployeeShiftDetailByDateTime((DateTime)value, DisplaySpan);
+                        }
+
                     }
                 }
 
@@ -487,12 +403,11 @@ namespace SMSViewModel.DataInstance
                     {
                         if(_EmployeeShiftDetailList == null)
                         {
-                            _EmployeeShiftDetailList = DB.Instance.SMSystemInstance.GetEmployeeShiftByDateTime((DateTime)UI.Instance.ShiftInstance.SelectedDate, 7);
+                            _EmployeeShiftDetailList = DB.Instance.SMSystemInstance.GetEmployeeShiftDetailByDateTime((DateTime)UI.Instance.ShiftInstance.SelectedDate, 7);
                         }
 
 
                         return _EmployeeShiftDetailList;
-                        //return Data.DB.Instance.SMSystemInstance.EmployeeShiftDetailsFor7Days;
                     }
 
                     set
