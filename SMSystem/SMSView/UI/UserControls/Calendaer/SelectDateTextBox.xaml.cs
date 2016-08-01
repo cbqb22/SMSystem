@@ -135,6 +135,9 @@ namespace SMSView.UI.UserControls.Calendaer
             this.年月日カレンダ.SelectedMonth = this.SelectedDate;
             this.年月日カレンダ.SelectedDate = this.SelectedDate;
             this.年月日カレンダポップアップ.IsOpen = true;
+
+            //System.Windows.Controls.Primitives.Popup p;
+            //p.Placement = System.Windows.Controls.Primitives.PlacementMode.
         }
 
         #endregion

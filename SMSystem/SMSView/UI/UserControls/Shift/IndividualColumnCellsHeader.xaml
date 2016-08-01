@@ -13,52 +13,70 @@
         <converter:ShortDateTimeColorConverter x:Key="ShortDateTimeColorConverter" />
 
 
-        <Style x:Key="styleEmployeeNameInputComboBox" TargetType="custom:EmployeeNameInputComboBox">
-            <Setter Property="CanvasHeight" Value="98"/>
-            <Setter Property="CanvasWidth" Value="78"/>
-            <Setter Property="TextBoxHeight" Value="98"/>
-            <Setter Property="TextBoxWidth" Value="78"/>
-            <Setter Property="ListBoxHeight" Value="100"/>
+
+
+        <Style x:Key="styleLabelHeader" TargetType="Label">
+            <Setter Property="Height" Value="98"/>
+            <Setter Property="Width" Value="78"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
-        <Style x:Key="styleWorkingTimeInputComboBox" TargetType="custom:DateRowHeaderInputComboBox">
-            <Setter Property="CanvasHeight" Value="79"/>
-            <Setter Property="CanvasWidth" Value="78"/>
-            <Setter Property="TextBoxHeight" Value="79"/>
-            <Setter Property="TextBoxWidth" Value="78"/>
-            <Setter Property="ListBoxHeight" Value="240"/>
-            <Setter Property="CanEditable" Value="False" />
+
+
+        <Style x:Key="styleLabel" TargetType="Label">
+            <Setter Property="Height" Value="79"/>
+            <Setter Property="Width" Value="78"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
-        
+
     </UserControl.Resources>
     <Grid>
         <StackPanel Orientation="Vertical">
             <Border BorderBrush="Gray" BorderThickness="1,1,1,1">
-                <custom:EmployeeNameInputComboBox Style="{StaticResource styleEmployeeNameInputComboBox}" Panel.ZIndex="2" BackSlashLineVisibility="Visible" CanEditable="False" />
+                <Label Style="{StaticResource styleLabelHeader}">
+                    <Label.Content>
+                        <Line Stroke="Gray" StrokeThickness="2" X1="{TemplateBinding Label.Width}"  Y1="0" X2="0" Y2="{TemplateBinding Label.Height}" Visibility="{TemplateBinding Label.Visibility}"/>
+                    </Label.Content>
+                </Label>
             </Border>
 
-            <StackPanel x:Name="dayWorkContainer" Orientation="Vertical" Panel.ZIndex="0">
+            <StackPanel x:Name="dayWorkContainer" Orientation="Vertical">
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto">
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=0}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=0}" />
+                    <Label  Style="{StaticResource styleLabel}" Foreground="{Binding SelectedDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=0}"  Content="{Binding SelectedDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=0}" >
+                    </Label>
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=1}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=1}" />
+                    <Label  Style="{StaticResource styleLabel}" Foreground="{Binding SelectedDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=1}"  Content="{Binding SelectedDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=1}" >
+                    </Label>
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=2}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=2}" />
+                    <Label  Style="{StaticResource styleLabel}" Foreground="{Binding SelectedDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=2}"  Content="{Binding SelectedDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=2}" >
+                    </Label>
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=3}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=3}" />
+                    <Label  Style="{StaticResource styleLabel}" Foreground="{Binding SelectedDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=3}"  Content="{Binding SelectedDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=3}" >
+                    </Label>
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=4}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=4}" />
+                    <Label  Style="{StaticResource styleLabel}" Foreground="{Binding SelectedDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=4}"  Content="{Binding SelectedDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=4}" >
+                    </Label>
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=5}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=5}" />
+                    <Label  Style="{StaticResource styleLabel}" Foreground="{Binding SelectedDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=5}"  Content="{Binding SelectedDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=5}" >
+                    </Label>
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,0,1,1" Width="auto" >
-                    <custom:DateRowHeaderInputComboBox  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列Color="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=6}"  表示用文字列="{Binding SelectStartDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=6}" />
+                    <Label  Style="{StaticResource styleLabel}" Foreground="{Binding SelectedDate,Converter={StaticResource ShortDateTimeColorConverter},ConverterParameter=6}"  Content="{Binding SelectedDate,Converter={StaticResource ShortDateTimeConverter},ConverterParameter=6}" >
+                    </Label>
                 </Border>
             </StackPanel>
         </StackPanel>

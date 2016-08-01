@@ -1,4 +1,4 @@
-﻿// T4 コード生成がモデル 'C:\Users\poohace\documents\visual studio 2015\Projects\SMSystem\SMSModel\DB\SMSystem\SMSystem.edmx' に対して有効です。 
+﻿// T4 コード生成がモデル 'C:\Users\poohace\Desktop\GitRepo\SMSystem\SMSystem\SMSModel\DB\SMSystem\SMSystem.edmx' に対して有効です。 
 // レガシ コード生成を有効にするには、'コード生成方法' デザイナー
 // プロパティの値を 'レガシ ObjectContext' に変更します。このプロパティは、デザイナーでモデルが開かれている場合に [プロパティ] ウィンドウ
 // で使用できます。

@@ -22,8 +22,7 @@
         </Grid.ColumnDefinitions>
         <uc:DateUpDown x:Name="年月日DateUpDown" HorizontalAlignment="Stretch"
 			  SelectedDate="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-													AncestorType={x:Type UserControl}}, Path=SelectedDate,  Mode=TwoWay, NotifyOnTargetUpdated=True}"
-      />
+													AncestorType={x:Type UserControl}}, Path=SelectedDate,  Mode=TwoWay, NotifyOnTargetUpdated=True}" />
         <Button Width="30" Content="C" Click="年月日カレンダ表示クリック" Grid.Column="1" Style="{StaticResource styButton}" />
         <Popup x:Name="年月日カレンダポップアップ" StaysOpen="False" IsOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=年月日DateUpDown}"  HorizontalAlignment="Left" >
             <Border BorderThickness="1">

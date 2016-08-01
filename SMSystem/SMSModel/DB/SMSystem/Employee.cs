@@ -17,7 +17,7 @@ namespace SMSModel.DB.SMSystem
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.Shifts = new HashSet<Shift>();
+            this.ShiftDetails = new HashSet<ShiftDetail>();
         }
     
         public int ID { get; set; }
@@ -44,6 +44,6 @@ namespace SMSModel.DB.SMSystem
         public virtual Status Status { get; set; }
         public virtual Territory Territory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shift> Shifts { get; set; }
+        public virtual ICollection<ShiftDetail> ShiftDetails { get; set; }
     }
 }

@@ -28,7 +28,6 @@ namespace SMSModel.DB.SMSystem
         public virtual DbSet<DutyCategory> DutyCategories { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<ShiftDetail> ShiftDetails { get; set; }
-        public virtual DbSet<Shift> Shifts { get; set; }
         public virtual DbSet<ShopCategory> ShopCategories { get; set; }
         public virtual DbSet<Shop> Shops { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }

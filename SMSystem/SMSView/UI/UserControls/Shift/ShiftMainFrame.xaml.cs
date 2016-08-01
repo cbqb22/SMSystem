@@ -25,22 +25,22 @@ namespace SMSView.UI.UserControls.Shift
         public ShiftMainFrame()
         {
             InitializeComponent();
-            Selector = this.datespanselector;
+            //Selector = this.datespanselector;
         }
 
-        private DateSpanSelector _Selector;
-        public DateSpanSelector Selector
-        {
-            get
-            {
-                return _Selector;
-            }
+        //private DateSpanSelector _Selector;
+        //public DateSpanSelector Selector
+        //{
+        //    get
+        //    {
+        //        return _Selector;
+        //    }
 
-            set
-            {
-                _Selector = value;
-            }
-        }
+        //    set
+        //    {
+        //        _Selector = value;
+        //    }
+        //}
 
 
 

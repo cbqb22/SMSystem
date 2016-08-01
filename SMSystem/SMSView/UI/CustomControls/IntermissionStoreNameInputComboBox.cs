@@ -43,7 +43,7 @@ namespace SMSView.UI.CustomControls
             {
                 if(_ListBoxItemSource == null)
                 {
-                    _ListBoxItemSource = SMSViewModel.DataInstance.Data.DropDownListData.IntermissionListBoxItemSource;
+                    _ListBoxItemSource = SMSViewModel.DataInstance.Data.UI.Instance.ShiftInstance.IntermissionListBoxItemSource;
                 }
 
                 return _ListBoxItemSource;

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SMSViewModel.UI.Windows;
+using SMSViewModel.DataInstance;
 
 namespace SMSView.UI.Windows
 {
@@ -25,6 +26,8 @@ namespace SMSView.UI.Windows
         public Shifts()
         {
             InitializeComponent();
+
+            this.DataContext = Data.UI.Instance.ShiftInstance;
         }
 
         #endregion

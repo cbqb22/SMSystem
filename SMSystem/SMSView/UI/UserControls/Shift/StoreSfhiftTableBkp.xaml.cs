@@ -33,43 +33,43 @@ namespace SMSView.UI.UserControls.Shift
         private void StoreSfhiftTable_Loaded(object sender, RoutedEventArgs e)
         {
 
-            try
-            {
-                using (var context = new SMSystemEntities())
-                {
-                    var query =
-                            (from x in context.Employees
-                             join y in context.Shifts
-                             on
-                                x.ID equals y.EmployeeID
-                             join z in context.ShiftDetails
-                             on
-                                y.ID equals z.ShiftID into sd
-                             join z2 in context.ShiftDetails
-                             on
-                                y.ID equals z2.ShiftID
-                             where
-                                z2.WorkingDate == new DateTime(2016,08,01)
-                             select new
-                             {
-                                 Employee = x,
-                                 ShiftDetail = sd
-                                     //姓 = x.姓,
-                                     //名 = x.名,
-                                     //店舗名 = x.Shop.店舗名,
-                                     //役職 = x.Status.役職名,
-                                     //シフト = z,
+            //try
+            //{
+            //    using (var context = new SMSystemEntities())
+            //    {
+            //        var query =
+            //                (from x in context.Employees
+            //                 join y in context.Shifts
+            //                 on
+            //                    x.ID equals y.EmployeeID
+            //                 join z in context.ShiftDetails
+            //                 on
+            //                    y.ID equals z.ShiftID into sd
+            //                 join z2 in context.ShiftDetails
+            //                 on
+            //                    y.ID equals z2.ShiftID
+            //                 where
+            //                    z2.WorkingDate == new DateTime(2016,08,01)
+            //                 select new
+            //                 {
+            //                     Employee = x,
+            //                     ShiftDetail = sd
+            //                         //姓 = x.姓,
+            //                         //名 = x.名,
+            //                         //店舗名 = x.Shop.店舗名,
+            //                         //役職 = x.Status.役職名,
+            //                         //シフト = z,
 
-                                 }).ToList();
+            //                     }).ToList();
 
-                    this.DataContext = query;
+            //        this.DataContext = query;
 
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
 
 

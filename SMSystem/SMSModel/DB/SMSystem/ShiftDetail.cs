@@ -15,7 +15,7 @@ namespace SMSModel.DB.SMSystem
     public partial class ShiftDetail
     {
         public int ID { get; set; }
-        public int ShiftID { get; set; }
+        public int EmployeeID { get; set; }
         public int ShopID { get; set; }
         public int DutyCategoryID { get; set; }
         public bool IsHoliday { get; set; }
@@ -32,7 +32,7 @@ namespace SMSModel.DB.SMSystem
         public bool 削除フラグ { get; set; }
     
         public virtual DutyCategory DutyCategory { get; set; }
-        public virtual Shift Shift { get; set; }
+        public virtual Employee Employee { get; set; }
         public virtual Shop Shop { get; set; }
     }
 }

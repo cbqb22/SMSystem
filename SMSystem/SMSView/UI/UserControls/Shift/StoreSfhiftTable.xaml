@@ -71,23 +71,25 @@
 
 
             <Grid Grid.Row="1" Grid.Column="0"  Style="{StaticResource gridShiftArea}">
-                <uc:IndividualColumnCellsHeader DataContext="{Binding Selector,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ShiftMainFrame}}}" BorderThickness="1"/>
+                <uc:IndividualColumnCellsHeader BorderThickness="1"/>
+                <!--<custom:WorkingTimeInputComboBox CanvasWidth="40" CanvasHeight="40" TextBoxHeight="40" TextBoxWidth="40"  ListBoxHeight="80" CanEditable="True" SlashLineVisibility="Collapsed" BackSlashLineVisibility="Collapsed"  表示用文字列="aa" 表示用文字列Color="AliceBlue"/>
+                <custom:WorkingTimeInputComboBox CanvasWidth="40" CanvasHeight="40" TextBoxHeight="40" TextBoxWidth="40"  ListBoxHeight="80" CanEditable="True" SlashLineVisibility="Collapsed" BackSlashLineVisibility="Collapsed"  表示用文字列="aa" 表示用文字列Color="AliceBlue"/>-->
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1"  Style="{StaticResource gridShiftArea}">
                 <ScrollViewer Style="{StaticResource styleScrollViewer}">
                     <StackPanel Orientation="Horizontal">
-                        <uc:IndividualColumnCells Panel.ZIndex="12" DataContext="{Binding [0]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="11" DataContext="{Binding [1]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="10" DataContext="{Binding [2]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="9" DataContext="{Binding [3]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="8" DataContext="{Binding [4]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="7" DataContext="{Binding [5]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="6" DataContext="{Binding [6]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="5" DataContext="{Binding [7]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="4" DataContext="{Binding [8]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="3" DataContext="{Binding [9]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="2" DataContext="{Binding [10]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
-                        <uc:IndividualColumnCells Panel.ZIndex="1" DataContext="{Binding [11]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[0]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[1]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[2]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[3]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[4]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[5]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[6]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[7]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[8]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[9]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[10]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
+                        <uc:IndividualColumnCells DataContext="{Binding EmployeeShiftDetailList[11]}" BorderThickness="1" GotFocus="IndividualColumnCells_GotFocus" LostFocus="IndividualColumnCells_LostFocus"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

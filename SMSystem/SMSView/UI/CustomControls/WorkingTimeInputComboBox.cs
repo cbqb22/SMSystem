@@ -42,7 +42,7 @@ namespace SMSView.UI.CustomControls
             {
                 if(_ListBoxItemSource == null)
                 {
-                    _ListBoxItemSource = SMSViewModel.DataInstance.Data.DropDownListData.WorkingTimeListBoxItemSource;
+                    _ListBoxItemSource = SMSViewModel.DataInstance.Data.UI.Instance.ShiftInstance.WorkingTimeListBoxItemSource;
                 }
 
                 return _ListBoxItemSource;

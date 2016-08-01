@@ -43,7 +43,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ShiftID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="ShopID" Type="int" Nullable="false" />
           <Property Name="DutyCategoryID" Type="int" Nullable="false" />
           <Property Name="IsHoliday" Type="bit" Nullable="false" />
@@ -57,14 +57,6 @@
           <Property Name="IsHelpStaff" Type="bit" Nullable="false" />
           <Property Name="登録日時" Type="datetime" Nullable="false" />
           <Property Name="備考" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="削除フラグ" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Shifts">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="削除フラグ" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ShopCategories">
@@ -156,15 +148,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ShiftDetails_Shifts1">
-          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+        <Association Name="FK_ShiftDetails_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="ShiftDetails" Type="Self.ShiftDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Shifts">
+            <Principal Role="Employees">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ShiftDetails">
-              <PropertyRef Name="ShiftID" />
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -177,18 +169,6 @@
             </Principal>
             <Dependent Role="ShiftDetails">
               <PropertyRef Name="ShopID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Shifts_Employees1">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-          <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Shifts">
-              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -220,7 +200,6 @@
           <EntitySet Name="DutyCategories" EntityType="Self.DutyCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShiftDetails" EntityType="Self.ShiftDetails" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopCategories" EntityType="Self.ShopCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
@@ -241,17 +220,13 @@
             <End Role="DutyCategories" EntitySet="DutyCategories" />
             <End Role="ShiftDetails" EntitySet="ShiftDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_ShiftDetails_Shifts1" Association="Self.FK_ShiftDetails_Shifts1">
-            <End Role="Shifts" EntitySet="Shifts" />
+          <AssociationSet Name="FK_ShiftDetails_Employees" Association="Self.FK_ShiftDetails_Employees">
+            <End Role="Employees" EntitySet="Employees" />
             <End Role="ShiftDetails" EntitySet="ShiftDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_ShiftDetails_Shop" Association="Self.FK_ShiftDetails_Shop">
             <End Role="Shops" EntitySet="Shops" />
             <End Role="ShiftDetails" EntitySet="ShiftDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Shifts_Employees1" Association="Self.FK_Shifts_Employees1">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="Shifts" EntitySet="Shifts" />
           </AssociationSet>
           <AssociationSet Name="FK_Shops_ShopCategories" Association="Self.FK_Shops_ShopCategories">
             <End Role="ShopCategories" EntitySet="ShopCategories" />
@@ -270,7 +245,6 @@
           <EntitySet Name="DutyCategories" EntityType="SMSystemModel.DutyCategory" />
           <EntitySet Name="Employees" EntityType="SMSystemModel.Employee" />
           <EntitySet Name="ShiftDetails" EntityType="SMSystemModel.ShiftDetail" />
-          <EntitySet Name="Shifts" EntityType="SMSystemModel.Shift" />
           <EntitySet Name="ShopCategories" EntityType="SMSystemModel.ShopCategory" />
           <EntitySet Name="Shops" EntityType="SMSystemModel.Shop" />
           <EntitySet Name="Statuses" EntityType="SMSystemModel.Status" />
@@ -291,12 +265,8 @@
             <End Role="Territory" EntitySet="Territories" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_Shifts_Employees1" Association="SMSystemModel.FK_Shifts_Employees1">
+          <AssociationSet Name="FK_ShiftDetails_Employees" Association="SMSystemModel.FK_ShiftDetails_Employees">
             <End Role="Employee" EntitySet="Employees" />
-            <End Role="Shift" EntitySet="Shifts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShiftDetails_Shifts1" Association="SMSystemModel.FK_ShiftDetails_Shifts1">
-            <End Role="Shift" EntitySet="Shifts" />
             <End Role="ShiftDetail" EntitySet="ShiftDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_ShiftDetails_Shop" Association="SMSystemModel.FK_ShiftDetails_Shop">
@@ -348,14 +318,14 @@
           <NavigationProperty Name="Shop" Relationship="SMSystemModel.FK_Employees_Shops" FromRole="Employee" ToRole="Shop" />
           <NavigationProperty Name="Status" Relationship="SMSystemModel.FK_Employees_Statuses" FromRole="Employee" ToRole="Status" />
           <NavigationProperty Name="Territory" Relationship="SMSystemModel.FK_Employees_Territories" FromRole="Employee" ToRole="Territory" />
-          <NavigationProperty Name="Shifts" Relationship="SMSystemModel.FK_Shifts_Employees1" FromRole="Employee" ToRole="Shift" />
+          <NavigationProperty Name="ShiftDetails" Relationship="SMSystemModel.FK_ShiftDetails_Employees" FromRole="Employee" ToRole="ShiftDetail" />
         </EntityType>
         <EntityType Name="ShiftDetail">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ShiftID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="ShopID" Type="Int32" Nullable="false" />
           <Property Name="DutyCategoryID" Type="Int32" Nullable="false" />
           <Property Name="IsHoliday" Type="Boolean" Nullable="false" />
@@ -371,18 +341,8 @@
           <Property Name="備考" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DutyCategory" Relationship="SMSystemModel.FK_ShiftDetails_DutyCategories1" FromRole="ShiftDetail" ToRole="DutyCategory" />
-          <NavigationProperty Name="Shift" Relationship="SMSystemModel.FK_ShiftDetails_Shifts1" FromRole="ShiftDetail" ToRole="Shift" />
+          <NavigationProperty Name="Employee" Relationship="SMSystemModel.FK_ShiftDetails_Employees" FromRole="ShiftDetail" ToRole="Employee" />
           <NavigationProperty Name="Shop" Relationship="SMSystemModel.FK_ShiftDetails_Shop" FromRole="ShiftDetail" ToRole="Shop" />
-        </EntityType>
-        <EntityType Name="Shift">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="削除フラグ" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="SMSystemModel.FK_Shifts_Employees1" FromRole="Shift" ToRole="Employee" />
-          <NavigationProperty Name="ShiftDetails" Relationship="SMSystemModel.FK_ShiftDetails_Shifts1" FromRole="Shift" ToRole="ShiftDetail" />
         </EntityType>
         <EntityType Name="ShopCategory">
           <Key>
@@ -481,27 +441,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Shifts_Employees1">
+        <Association Name="FK_ShiftDetails_Employees">
           <End Type="SMSystemModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="SMSystemModel.Shift" Role="Shift" Multiplicity="*" />
+          <End Type="SMSystemModel.ShiftDetail" Role="ShiftDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Shift">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ShiftDetails_Shifts1">
-          <End Type="SMSystemModel.Shift" Role="Shift" Multiplicity="1" />
-          <End Type="SMSystemModel.ShiftDetail" Role="ShiftDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shift">
-              <PropertyRef Name="ID" />
-            </Principal>
             <Dependent Role="ShiftDetail">
-              <PropertyRef Name="ShiftID" />
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -599,15 +547,6 @@
                 <ScalarProperty Name="IsHoliday" ColumnName="IsHoliday" />
                 <ScalarProperty Name="DutyCategoryID" ColumnName="DutyCategoryID" />
                 <ScalarProperty Name="ShopID" ColumnName="ShopID" />
-                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Shifts">
-            <EntityTypeMapping TypeName="SMSystemModel.Shift">
-              <MappingFragment StoreEntitySet="Shifts">
-                <ScalarProperty Name="削除フラグ" ColumnName="削除フラグ" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

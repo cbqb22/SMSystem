@@ -61,9 +61,6 @@
     <Compile Include="DB\SMSystem\Employee.cs">
       <DependentUpon>SMSystem.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\SMSystem\Shift.cs">
-      <DependentUpon>SMSystem.tt</DependentUpon>
-    </Compile>
     <Compile Include="DB\SMSystem\ShiftDetail.cs">
       <DependentUpon>SMSystem.tt</DependentUpon>
     </Compile>

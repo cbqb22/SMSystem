@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SMSView"
              Startup="Application_Startup"
-             StartupUri="/UI/Windows/Menu.xaml">
+             StartupUri="/UI/Windows/Menu.xaml"
+             DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <!--StartupUri="/UI/Windows/Menu.xaml-->
     <Application.Resources>
         <ResourceDictionary>

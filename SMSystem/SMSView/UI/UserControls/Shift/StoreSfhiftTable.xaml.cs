@@ -23,61 +23,56 @@ namespace SMSView.UI.UserControls.Shift
     /// </summary>
     public partial class StoreSfhiftTable : UserControl
     {
+        #region コンストラクタ
         public StoreSfhiftTable()
         {
             InitializeComponent();
 
-            this.Loaded += StoreSfhiftTable_Loaded;
+            Init();
         }
 
-        private void StoreSfhiftTable_Loaded(object sender, RoutedEventArgs e)
+        #endregion
+        #region クラスメソッド
+
+        /// <summary>
+        /// 初期データをセット
+        /// </summary>
+        private void Init()
         {
+            //try
+            //{
+            //    int addDays = 7;
+            //    var query =
+            //     (from x in Data.DB.SMSystem.EmployeeCashData
+            //      join y in Data.DB.SMSystem.EmployeeCashData.SelectMany(x => x.Shifts)
+            //      on
+            //         x.ID equals y.EmployeeID
+            //      join z in Data.DB.SMSystem.EmployeeCashData.SelectMany(x => x.Shifts).SelectMany(x => x.ShiftDetails).Where(x => DateTime.Now <= x.WorkingDate && x.WorkingDate < DateTime.Now.AddDays(addDays))
+            //      on
+            //         y.ID equals z.ShiftID into sd
 
-            try
-            {
-                using (var context = new SMSystemEntities())
-                {
-                    var query =
-                            (from x in context.Employees
-                             join y in context.Shifts
-                             on
-                                x.ID equals y.EmployeeID
-                             join z in context.ShiftDetails
-                             on
-                                y.ID equals z.ShiftID into sd
-                             join z2 in context.ShiftDetails
-                             on
-                                y.ID equals z2.ShiftID
-                             where
-                                z2.WorkingDate == new DateTime(2016,08,01)
-                             select new
-                             {
-                                 Employee = x,
-                                 ShiftDetail = sd.ToList()
-                                     //姓 = x.姓,
-                                     //名 = x.名,
-                                     //店舗名 = x.Shop.店舗名,
-                                     //役職 = x.Status.役職名,
-                                     //シフト = z,
+            //      select new
+            //      {
+            //          Employee = x,
+            //          ShiftDetail = sd.ToList()
+            //      });
 
-                                 }).ToList();
 
-                    var list = query.ToList();
+            //    var list = query.ToList();
 
-                    this.DataContext = list;
-
-                    //this.indi.DataContext = list[0];
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
+            //    this.DataContext = list;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message + ex.StackTrace);
+            //    throw ex;
+            //}
 
 
         }
 
+        #endregion 
+        #region イベント
         private void IndividualColumnCells_GotFocus(object sender, RoutedEventArgs e)
         {
             var icc = sender as IndividualColumnCells;
@@ -101,5 +96,7 @@ namespace SMSView.UI.UserControls.Shift
             icc.BorderBrush = new SolidColorBrush(Colors.Black);
 
         }
+
+        #endregion
     }
 }

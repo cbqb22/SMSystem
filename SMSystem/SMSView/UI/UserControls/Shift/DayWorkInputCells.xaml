@@ -43,11 +43,11 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Panel.ZIndex="2" >
-                <custom:WorkingTimeInputComboBox x:Name="workingtimeStart" BorderBrush="Gray" BorderThickness="1,0,0,1"  Style="{StaticResource styleWorkingTimeInputComboBox}" Panel.ZIndex="2" 表示用文字列="{Binding Path=ShiftDetail[0].StartTime, Converter={StaticResource WorkingTimeToDisplayStringsConverter}}" />
-                <custom:WorkingTimeInputComboBox x:Name="workingtimeEnd" BorderBrush="Gray" BorderThickness="1,0,1,1" Style="{StaticResource styleWorkingTimeInputComboBox2}" Panel.ZIndex="1" 表示用文字列="{Binding Path=ShiftDetail[0].EndTime,Converter={StaticResource WorkingTimeToDisplayStringsConverter}}"/>
+                <custom:WorkingTimeInputComboBox x:Name="workingtimeStart" BorderBrush="Gray" BorderThickness="1,0,0,1"  Style="{StaticResource styleWorkingTimeInputComboBox}" 表示用文字列="{Binding Path=ShiftDetails[0].StartTime, Converter={StaticResource WorkingTimeToDisplayStringsConverter}}" />
+                <custom:WorkingTimeInputComboBox x:Name="workingtimeEnd" BorderBrush="Gray" BorderThickness="1,0,1,1" Style="{StaticResource styleWorkingTimeInputComboBox2}" 表示用文字列="{Binding Path=ShiftDetails[0].EndTime,Converter={StaticResource WorkingTimeToDisplayStringsConverter}}"/>
             </StackPanel>
             <Border Panel.ZIndex="1">
-                <custom:IntermissionStoreNameInputComboBox x:Name="interStoreName" BorderBrush="Gray" BorderThickness="1,0,1,0" Style="{StaticResource styleIntermissionStoreNameInputComboBox}" 表示用文字列="{Binding ShiftDetail[0].Intermission1,Converter={StaticResource IntermissionToDisplayStringsConverter}}"/>
+                <custom:IntermissionStoreNameInputComboBox x:Name="interStoreName" BorderBrush="Gray" BorderThickness="1,0,1,0" Style="{StaticResource styleIntermissionStoreNameInputComboBox}" 表示用文字列="{Binding ShiftDetails[0].Intermission1,Converter={StaticResource IntermissionToDisplayStringsConverter}}"/>
             </Border>
         </StackPanel>
 

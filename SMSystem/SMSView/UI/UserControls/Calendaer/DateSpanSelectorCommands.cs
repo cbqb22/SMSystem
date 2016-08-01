@@ -41,7 +41,7 @@ namespace SMSView.UI.UserControls.Calendaer
                 }
 
                 var dss = parameter as DateSpanSelector;
-                dss.SelectStartDate = dss.SelectStartDate.AddDays(7);
+                dss.SelectStartDate = ((DateTime)dss.SelectStartDate).AddDays(7);
             }
 
 
@@ -75,7 +75,7 @@ namespace SMSView.UI.UserControls.Calendaer
                 }
 
                 var dss = parameter as DateSpanSelector;
-                dss.SelectStartDate = dss.SelectStartDate.AddDays(-7);
+                dss.SelectStartDate = ((DateTime)dss.SelectStartDate).AddDays(-7);
             }
 
 
@@ -109,7 +109,7 @@ namespace SMSView.UI.UserControls.Calendaer
                 }
 
                 var dss = parameter as DateSpanSelector;
-                dss.SelectStartDate = dss.SelectStartDate.AddMonths(1);
+                dss.SelectStartDate = ((DateTime)dss.SelectStartDate).AddMonths(1);
             }
 
 
@@ -143,7 +143,7 @@ namespace SMSView.UI.UserControls.Calendaer
                 }
 
                 var dss = parameter as DateSpanSelector;
-                dss.SelectStartDate = dss.SelectStartDate.AddMonths(-1);
+                dss.SelectStartDate = ((DateTime)dss.SelectStartDate).AddMonths(-1);
             }
 
 

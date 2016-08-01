@@ -154,7 +154,7 @@ namespace SMSView.UI.CustomControls
         /// <summary>
         /// 表示用文字列
         /// /// </summary>
-        public static readonly DependencyProperty 表示用文字列Property = DependencyProperty.Register("表示用文字列", typeof(string), typeof(InputComboBoxBase));
+        public static readonly DependencyProperty 表示用文字列Property = DependencyProperty.Register("表示用文字列", typeof(string), typeof(InputComboBoxBase), new PropertyMetadata(""));
 
         public string 表示用文字列
         {
@@ -167,7 +167,7 @@ namespace SMSView.UI.CustomControls
         /// 表示用文字列Color
         /// デフォルトは黒
         /// /// </summary>
-        public static readonly DependencyProperty 表示用文字列ColorProperty = DependencyProperty.Register("表示用文字列Color", typeof(SolidColorBrush), typeof(InputComboBoxBase),new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+        public static readonly DependencyProperty 表示用文字列ColorProperty = DependencyProperty.Register("表示用文字列Color", typeof(SolidColorBrush), typeof(InputComboBoxBase), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
         public SolidColorBrush 表示用文字列Color
         {
@@ -230,7 +230,7 @@ namespace SMSView.UI.CustomControls
 
 
 
-          
+
 
 
         /// <summary>
@@ -314,6 +314,7 @@ namespace SMSView.UI.CustomControls
             }
             else
             {
+
                 this.IsKeyboardFocus = true;
             }
 
@@ -383,7 +384,10 @@ namespace SMSView.UI.CustomControls
 
         public virtual void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            textBox.SelectAll();
+            if (textBox.IsSelectionActive)
+            {
+                textBox.SelectAll();
+            }
         }
 
 
