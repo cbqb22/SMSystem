@@ -28,50 +28,9 @@ namespace SMSView.UI.UserControls.Shift
         {
             InitializeComponent();
 
-            Init();
         }
 
         #endregion
-        #region クラスメソッド
-
-        /// <summary>
-        /// 初期データをセット
-        /// </summary>
-        private void Init()
-        {
-            //try
-            //{
-            //    int addDays = 7;
-            //    var query =
-            //     (from x in Data.DB.SMSystem.EmployeeCashData
-            //      join y in Data.DB.SMSystem.EmployeeCashData.SelectMany(x => x.Shifts)
-            //      on
-            //         x.ID equals y.EmployeeID
-            //      join z in Data.DB.SMSystem.EmployeeCashData.SelectMany(x => x.Shifts).SelectMany(x => x.ShiftDetails).Where(x => DateTime.Now <= x.WorkingDate && x.WorkingDate < DateTime.Now.AddDays(addDays))
-            //      on
-            //         y.ID equals z.ShiftID into sd
-
-            //      select new
-            //      {
-            //          Employee = x,
-            //          ShiftDetail = sd.ToList()
-            //      });
-
-
-            //    var list = query.ToList();
-
-            //    this.DataContext = list;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message + ex.StackTrace);
-            //    throw ex;
-            //}
-
-
-        }
-
-        #endregion 
         #region イベント
         private void IndividualColumnCells_GotFocus(object sender, RoutedEventArgs e)
         {

@@ -30,6 +30,7 @@ namespace SMSView.UI.Windows
             this.DataContext = Data.UI.Instance.ShiftInstance;
         }
 
+
         #endregion
 
         #region コマンド一覧

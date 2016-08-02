@@ -104,7 +104,7 @@ namespace SMSView.UI.UserControls.Shift
                     listViewItem.SetValue(Grid.ZIndexProperty, ZindexCounter--);
                 }
 
-                var innerlistview = VisualTreeHelperEx.FindUIElement<ListView>(listViewItem) as ListView;
+                var innerlistview = VisualTreeHelperEx.FindFirstUIElement<ListView>(listViewItem) as ListView;
                 if (innerlistview != null)
                 {
                     int ZindexCounter2 = innerlistview.Items.Count + 1;

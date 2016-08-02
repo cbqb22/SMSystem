@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using SMSView.UI.UserControls.Calendaer;
+using SMSViewModel.DataInstance;
+using SMSViewModel.Common.VisualTreeHelperEx;
+using SMSView.UI.CustomControls;
 
 namespace SMSView.UI.UserControls.Shift
 {
@@ -25,24 +28,7 @@ namespace SMSView.UI.UserControls.Shift
         public ShiftMainFrame()
         {
             InitializeComponent();
-            //Selector = this.datespanselector;
         }
-
-        //private DateSpanSelector _Selector;
-        //public DateSpanSelector Selector
-        //{
-        //    get
-        //    {
-        //        return _Selector;
-        //    }
-
-        //    set
-        //    {
-        //        _Selector = value;
-        //    }
-        //}
-
-
 
         #region INotifyPropertyChangedの実装
 
@@ -58,9 +44,34 @@ namespace SMSView.UI.UserControls.Shift
             }
         }
 
-        #endregion 
 
 
+        #endregion
 
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("シフトの変更箇所を保存します。\r\n\r\n宜しいですか？","保存",MessageBoxButton.YesNo,MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                MessageBox.Show(Data.DB.Instance.SMSystemInstance.SaveShiftToDB(),"更新結果",MessageBoxButton.OK,MessageBoxImage.Information);
+                Data.DB.Instance.SMSystemInstance.Load();
+                Data.UI.Instance.ShiftInstance.EmployeeShiftDetailList = Data.DB.Instance.SMSystemInstance.GetEmployeeShiftDetailByDateTime((DateTime)Data.UI.Instance.ShiftInstance.SelectedDate, 7);
+                Refresh();
+            }
+
+        }
+
+        //全てのInputComboBoxをRefresh
+        public void Refresh()
+        {
+            var list = VisualTreeHelperEx.FindUIElements<InputComboBoxBase>(this);
+
+            foreach(var icb in list)
+            {
+                icb.OnApplyTemplate();
+                //icb.IsCellModified = false;
+            }
+
+
+        }
     }
 }

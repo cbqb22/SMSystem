@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using SMSModel.DB.SMSystem;
 using System.ComponentModel;
 using System.Data.Entity;
+using SMSViewModel.UI.Windows;
 
 namespace SMSViewModel.DataInstance
 {
@@ -16,7 +17,7 @@ namespace SMSViewModel.DataInstance
     public class Data
     {
 
-        #region staticイニシャライザ
+        #region initializer
         static Data()
         {
             //お約束
@@ -26,7 +27,7 @@ namespace SMSViewModel.DataInstance
 
         #endregion
 
-        #region データベース
+        #region Database
         public static class DB
         {
             public static class Instance
@@ -71,13 +72,13 @@ namespace SMSViewModel.DataInstance
                 {
                     //データを読込み
                     //不足Rowを挿入
-                    this.Load();
+                    Load();
 
 
                 }
 
                 /// <summary>
-                /// 従業員リスト
+                /// 従業員リストのキャッシュ
                 /// </summary>
                 private List<Employee> _EmployeeCashData;
                 public List<Employee> EmployeeCashData
@@ -86,7 +87,7 @@ namespace SMSViewModel.DataInstance
                     {
                         if (_EmployeeCashData == null)
                         {
-                            Load<Employee>();
+                            Load();
 
                         }
                         return _EmployeeCashData;
@@ -100,29 +101,10 @@ namespace SMSViewModel.DataInstance
                 }
 
 
-                public List<EmployeeShiftDetail> EmployeeShiftDetailsFor7Days
-                {
-                    get
-                    {
-                        if (_EmployeeCashData == null)
-                        {
-                            Load<Employee>();
-
-                            
-                        }
-
-                        return GetEmployeeShiftDetailByDateTime((DateTime)UI.Instance.ShiftInstance.SelectedDate, 7);
-
-                    }
-                }
-
-
                 /// <summary>
-                /// 指定のタイプのリストをロード
-                /// 不足のRowを追加する
+                /// 必要なキャッシュデータをロードする
                 /// </summary>
-                /// <param name="type"></param>
-                public void Load<T>() where T : class
+                public void Load()
                 {
                     try
                     {
@@ -130,67 +112,73 @@ namespace SMSViewModel.DataInstance
                         {
                             _EmployeeCashData = context.Employees.Include(p => p.ShiftDetails).Include(p => p.Shop).Include(p => p.Territory).Include("ShiftDetails.Shop").ToList();
 
-                            //System.Diagnostics.Debug.WriteLine("------------ログ開始--------------");
-                            //context.Database.Log = (sql) => { System.Diagnostics.Debug.Write(sql); };   //SQLを出す
-
-                            DateTime startDate = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day).AddMonths(-2);
-                            DateTime endDate = startDate.AddMonths(4);
-
-                            if (typeof(T) == typeof(Employee))
-                            {
-                                var employee = context.Employees;
-                                var shiftdetals = context.ShiftDetails;
-                                var dutyCategory = context.DutyCategories;
-
-
-                                var query = from x in shiftdetals
-                                            where
-                                                startDate <= x.WorkingDate &&
-                                                x.WorkingDate <= endDate
-                                            select x;
-
-
-
-                                for (DateTime d = startDate; d <= endDate; d = d.AddDays(1))
-                                {
-
-                                    foreach(var emp in employee)
-                                    {
-                                        var checkData = shiftdetals.Where(x => x.EmployeeID == emp.ID && x.WorkingDate == d);
-                                        if(checkData.Count() == 0)
-                                        {
-                                            //TODO DutyCategoryID,StartTimeなどををnull許可する
-                                            ShiftDetail sd = new ShiftDetail() { EmployeeID = emp.ID, ShopID = emp.ShopID, DutyCategoryID = 1, IsHoliday = false, WorkingDate = d, StartTime = "-", EndTime = "-", Intermission1 = "-", Intermission2 = "-", TravelTime1 = "-", TravelTime2 = "-", IsHelpStaff = false, 登録日時 = DateTime.Now, 備考= "-",削除フラグ = false };
-
-                                            shiftdetals.Add(sd);
-
-                                        }
-                                    }
-                                 
-                                }
-
-
-
-
-                            }
-
-                            context.SaveChanges();
-
                         }
-                    }catch(Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         System.Diagnostics.Debug.WriteLine(ex.Message + ex.StackTrace);
                     }
                 }
 
                 /// <summary>
-                /// 必要なキャッシュデータをロードする
+                /// 不足のRowを追加する
                 /// </summary>
-                public void Load()
+                /// <param name="type"></param>
+                public void InsertEmptyCells()
                 {
-                    Load<Employee>();
-                    //Load<ShiftDetail>();
+                    try
+                    {
+                        using (var context = new SMSystemEntities())
+                        {
+
+                            //System.Diagnostics.Debug.WriteLine("------------ログ開始--------------");
+                            //context.Database.Log = (sql) => { System.Diagnostics.Debug.Write(sql); };   //SQLを出す
+
+                            DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddMonths(-2);
+                            DateTime endDate = startDate.AddMonths(4);
+
+                            var employee = context.Employees;
+                            var shiftdetals = context.ShiftDetails;
+                            var dutyCategory = context.DutyCategories;
+
+
+                            var query = from x in shiftdetals
+                                        where
+                                            startDate <= x.WorkingDate &&
+                                            x.WorkingDate <= endDate
+                                        select x;
+
+
+
+                            for (DateTime d = startDate; d <= endDate; d = d.AddDays(1))
+                            {
+
+                                foreach (var emp in employee)
+                                {
+                                    var checkData = shiftdetals.Where(x => x.EmployeeID == emp.ID && x.WorkingDate == d);
+                                    if (checkData.Count() == 0)
+                                    {
+                                        //TODO DutyCategoryID,StartTimeなどををnull許可する
+                                        ShiftDetail sd = new ShiftDetail() { EmployeeID = emp.ID, ShopID = emp.ShopID, DutyCategoryID = 1, IsHoliday = false, WorkingDate = d, StartTime = "-", EndTime = "-", Intermission1 = "-", Intermission2 = "-", TravelTime1 = "-", TravelTime2 = "-", IsHelpStaff = false, 登録日時 = DateTime.Now, 備考 = "-", 削除フラグ = false };
+
+                                        shiftdetals.Add(sd);
+
+                                    }
+                                }
+
+                            }
+
+
+                            context.SaveChanges();
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.Message + ex.StackTrace);
+                    }
                 }
+
 
 
                 /// <summary>
@@ -213,7 +201,7 @@ namespace SMSViewModel.DataInstance
                 /// <param name="datetime"></param>
                 /// <param name="days"></param>
                 /// <returns></returns>
-                public List<EmployeeShiftDetail> GetEmployeeShiftDetailByDateTime(DateTime datetime,int days)
+                public List<EmployeeShiftDetail> GetEmployeeShiftDetailByDateTime(DateTime datetime, int days)
                 {
                     DateTime dt = new DateTime(datetime.Year, datetime.Month, datetime.Day);
 
@@ -222,16 +210,83 @@ namespace SMSViewModel.DataInstance
                       join z in Data.DB.Instance.SMSystemInstance.EmployeeCashData.SelectMany(x => x.ShiftDetails).Where(x => dt <= x.WorkingDate && x.WorkingDate < dt.AddDays(days))
                       on
                          x.ID equals z.EmployeeID into sd
-
                       select new EmployeeShiftDetail
                       {
                           Employee = x,
-                          ShiftDetails = sd.ToList()
+                          ShiftDetails = sd.OrderBy(d => d.WorkingDate).ToList()
                       });
 
 
                     return query.ToList();
 
+                }
+
+
+                public string SaveShiftToDB()
+                {
+                    var query =
+                     (from x in Data.DB.Instance.SMSystemInstance.EmployeeCashData
+                      join z in Data.DB.Instance.SMSystemInstance.EmployeeCashData.SelectMany(x => x.ShiftDetails).Where(y => y.IsModified == true)
+                      on
+                         x.ID equals z.EmployeeID into sd
+                      select sd);
+
+
+                    string updateMessage = "";
+
+                    var modifiedList = query.SelectMany(x => x).ToList();
+                    int updateCount = modifiedList.Count();
+
+                    if (updateCount == 0)
+                    {
+                        updateMessage = "変更箇所がありません。";
+                        return updateMessage;
+                    }
+
+                    bool error = false;
+
+                    try
+                    {
+                        using (var context = new SMSystemEntities())
+                        {
+                            foreach (var row in modifiedList)
+                            {
+                                var updateRow = context.ShiftDetails.Where(x => x.EmployeeID == row.EmployeeID && x.ID == row.ID);
+
+                                if (updateRow.Count() == 1)
+                                {
+                                    var r = updateRow.First();
+                                    r.StartTime = row.StartTime;
+                                    r.EndTime = row.EndTime;
+                                    r.Intermission1 = row.Intermission1;
+                                    r.Intermission2 = row.Intermission2;
+                                    r.IsHoliday = row.IsHoliday;
+                                    r.IsHelpStaff = row.IsHelpStaff;
+                                }
+                                else
+                                {
+                                    //Logに出力
+                                }
+                            }
+
+                            updateCount = context.SaveChanges();
+
+
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        error = true;
+                        updateMessage = string.Format("データベースに保存中にエラーが発生しました。\r\nMessage:{0}\r\nStackTrace:{1}", e.Message, e.StackTrace);
+                    }
+
+                    if (!error)
+                    {
+                        updateMessage = string.Format("{0}件の更新しました。", updateCount);
+                    }
+
+                    return updateMessage;
                 }
 
                 /// <summary>
@@ -274,8 +329,8 @@ namespace SMSViewModel.DataInstance
 
         #endregion
 
-        #region UI用データ
-        
+        #region UI Data
+
         public class UI
         {
             public static class Instance
@@ -336,6 +391,7 @@ namespace SMSViewModel.DataInstance
 
                 #endregion
             }
+
             public class Shift : INotifyPropertyChanged
             {
                 #region INotifyPropertyChanged メンバ
@@ -351,13 +407,22 @@ namespace SMSViewModel.DataInstance
 
                 #endregion
 
-
+                #region コンストラクタ
                 public Shift()
                 {
                     SelectedDate = DateTime.Now;
                 }
 
+                #endregion
 
+                #region フィールド
+                //TODO:データベースへ移行
+                public readonly List<string> IntermissionListBoxItemSource = new List<string>() { "－", "-0.5", "-1.0", "-1.5", "-2.0" };
+                public readonly List<string> WorkingTimeListBoxItemSource = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
+
+                #endregion
+
+                #region プロパティ
                 /// <summary>
                 /// 選択日付
                 /// </summary>
@@ -378,13 +443,11 @@ namespace SMSViewModel.DataInstance
                             sabun = (DateTime)value - (DateTime)_SelectedDate;
                         }
 
-
                         _SelectedDate = value;
                         FirePropertyChanged("SelectedDate");
 
-                        if(sabun.TotalDays != 0)
+                        if (sabun.TotalDays != 0)
                         {
-
                             EmployeeShiftDetailList = Data.DB.Instance.SMSystemInstance.GetEmployeeShiftDetailByDateTime((DateTime)value, DisplaySpan);
                         }
 
@@ -392,16 +455,14 @@ namespace SMSViewModel.DataInstance
                 }
 
                 /// <summary>
-                /// 表示・編集できるシフトデータ
+                /// 表示編集用のシフトデータ
                 /// </summary>
-
-
                 private List<DB.SMSystem.EmployeeShiftDetail> _EmployeeShiftDetailList;
                 public List<DB.SMSystem.EmployeeShiftDetail> EmployeeShiftDetailList
                 {
                     get
                     {
-                        if(_EmployeeShiftDetailList == null)
+                        if (_EmployeeShiftDetailList == null)
                         {
                             _EmployeeShiftDetailList = DB.Instance.SMSystemInstance.GetEmployeeShiftDetailByDateTime((DateTime)UI.Instance.ShiftInstance.SelectedDate, 7);
                         }
@@ -418,10 +479,7 @@ namespace SMSViewModel.DataInstance
 
                 }
 
-                //TODO:データベースへ移行
-                public readonly List<string> IntermissionListBoxItemSource = new List<string>() {"－", "-0.5", "-1.0", "-1.5", "-2.0"};
-                public readonly List<string> WorkingTimeListBoxItemSource = new List<string>() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
-
+                #endregion
 
             }
         }

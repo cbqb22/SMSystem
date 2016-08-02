@@ -17,16 +17,11 @@ namespace SMSViewModel.Common.VisualTreeHelperEx
 {
     public static class VisualTreeHelperEx
     {
-        public static DependencyObject FindUIElement<T>(DependencyObject obj) where T : FrameworkElement
+        public static T FindFirstUIElement<T>(DependencyObject obj) where T : FrameworkElement
         {
             var fe = obj as FrameworkElement;
             if (fe != null)
             {
-                //if (fe is T)
-                //{
-                //    return (T)fe;
-                //}
-
                 int childCount = VisualTreeHelper.GetChildrenCount(fe);
 
                 for (int i = 0; i < childCount; i++)
@@ -42,7 +37,7 @@ namespace SMSViewModel.Common.VisualTreeHelperEx
                         return (T)fe2;
                     }
 
-                    fe2 = FindUIElement<T>(fe2) as FrameworkElement;
+                    fe2 = FindFirstUIElement<T>(fe2) as FrameworkElement;
 
                     if (fe2 == null)
                     {
@@ -59,6 +54,32 @@ namespace SMSViewModel.Common.VisualTreeHelperEx
             }
 
             return null;
+        }
+
+
+        public static List<T> FindUIElements<T>(DependencyObject obj) where T : FrameworkElement
+        {
+            List<T> list = new List<T>();
+
+            var fe = obj as FrameworkElement;
+            if (fe != null)
+            {
+                if(fe is T)
+                {
+                    list.Add((T)fe);
+                }
+
+                int childCount = VisualTreeHelper.GetChildrenCount(fe);
+
+                for (int i = 0; i < childCount; i++)
+                {
+                    var sublist=  FindUIElements<T>(VisualTreeHelper.GetChild(fe, i));
+                    list = list.Concat(sublist).ToList();
+                }
+            }
+
+            return list;
+
         }
 
     }

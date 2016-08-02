@@ -22,11 +22,11 @@
     
     <Grid>
         <StackPanel Orientation="Vertical">
-            <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Panel.ZIndex="1" GotFocus="Border_GotFocus" LostFocus="Border_LostFocus">
-                <custom:EmployeeNameInputComboBox 表示用文字列="{Binding Path=Employee.姓}" Style="{StaticResource styleEmployeeNameInputComboBox}"/>
+            <Border BorderBrush="Gray" BorderThickness="1,1,1,1" GotFocus="Border_GotFocus" LostFocus="Border_LostFocus">
+                <custom:EmployeeNameInputComboBox 表示用文字列="{Binding Path=Employee.姓}" Style="{StaticResource styleEmployeeNameInputComboBox}" CanEditable="False"/>
             </Border>
 
-            <StackPanel x:Name="dayWorkContainer" Orientation="Vertical" Panel.ZIndex="0">
+            <StackPanel x:Name="dayWorkContainer" Orientation="Vertical" >
                 <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[0]}" BorderThickness="0,0,0,1" BorderBrush="Gray" />
                 <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[1]}" BorderThickness="0,0,0,1" BorderBrush="Gray"/>
                 <uc:DayWorkInputCells   DataContext="{Binding ShiftDetails[2]}" BorderThickness="0,0,0,1" BorderBrush="Gray"/>

@@ -36,8 +36,6 @@
 
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-
-
             <uc:ShiftMainFrame />
         </Grid>
     </Grid>

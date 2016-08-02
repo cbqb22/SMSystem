@@ -28,7 +28,6 @@ namespace SMSView.UI.UserControls.Calendaer
             InitializeComponent();
 
             this.selectDateTextBox.DataContext = Data.UI.Instance.ShiftInstance;
-            //this.SelectStartDate = SMSViewModel.DataInstance.Data.UI.Instance.ShiftInstance.SelectedDate;
 
         }
 
@@ -44,25 +43,6 @@ namespace SMSView.UI.UserControls.Calendaer
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        //private DateTime? _SelectStartDate;
-
-        //public DateTime? SelectStartDate
-        //{
-        //    get { return _SelectStartDate; }
-        //    set
-        //    {
-        //        _SelectStartDate = value;
-        //        OnPropertyChanged("SelectStartDate");
-        //        //DIブリッジする
-        //        SMSViewModel.DataInstance.Data.UI.Instance.ShiftInstance.SelectedDate = value;
-
-        //        DateTime start = DateTime.Now;
-        //        SMSViewModel.DataInstance.Data.UI.Instance.ShiftInstance.EmployeeShiftDetailList =  SMSViewModel.DataInstance.Data.DB.Instance.SMSystemInstance.GetEmployeeShiftByDateTime((DateTime)value, 7);
-        //        DateTime end = DateTime.Now;
-        //        TimeSpan ts = DateTime.Now.Subtract(start);
-        //        System.Diagnostics.Debug.WriteLine((ts.Milliseconds));
-        //    }
-        //}
 
 
         // Create the OnPropertyChanged method to raise the event

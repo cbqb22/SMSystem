@@ -52,14 +52,16 @@
                                 <StackPanel Orientation="Vertical" Canvas.Left="0" Canvas.Top="0">
                                     <StackPanel Orientation="Horizontal">
 
+                                        <!--Text="{Binding 表示用文字列,Mode=TwoWay}"-->
                                         <TextBox
-                Text="{Binding Path=表示用文字列,Mode=TwoWay}"
-								Name="textbox"
-								HorizontalAlignment="Stretch"
-								VerticalAlignment="Center"
-								VerticalContentAlignment="Center"
-								BorderThickness="0"
-								Margin="0"
+                                            
+
+                                            Name="textbox"
+								            HorizontalAlignment="Stretch"
+								            VerticalAlignment="Center"
+								            VerticalContentAlignment="Center"
+								            BorderThickness="0"
+								            Margin="0"
                                             IsEnabled="{Binding Path=CanEditable}"
                                             Width="{Binding Path=TextBoxWidth}"
                                             Height="{Binding Path=TextBoxHeight}"
@@ -68,31 +70,42 @@
                                             <TextBox.Style>
                                                 <Style>
                                                     <Style.Triggers>
+
+
+
                                                         <DataTrigger Binding="{Binding IsFirstFocus}" Value="true">
-
                                                             <Setter Property="TextBox.Background" Value="#ffffcc" />
-                                                            <!--<Setter Property="TextBox.Width" Value="30" />-->
-
+                                                            <Setter Property="TextBox.Text" Value="{Binding 表示用文字列,Mode=TwoWay}" />
                                                             <!--<Setter Property="TextBox.Template">
                                                                 <Setter.Value>
                                                                     <ControlTemplate TargetType="TextBox">
-                                                                        <TextBox Margin="0,0,0,0" Height="{Binding TextBoxHeight}" Width="{Binding TextBoxWidth}" Background="#ffffcc" TextAlignment="Center" Text="{Binding Path=表示用文字列}"  VerticalAlignment="Center" Foreground="Black" />
+                                                                        <TextBox Height="{Binding TextBoxHeight}" Width="{Binding TextBoxWidth}" Background="#ffffcc" Foreground="{Binding Path=表示用文字列Color}" Text="{Binding Path=表示用文字列,Mode=TwoWay}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" />
                                                                     </ControlTemplate>
                                                                 </Setter.Value>
                                                             </Setter>-->
-
                                                         </DataTrigger>
+
 
                                                         <DataTrigger Binding="{Binding IsFirstFocus}" Value="false">
                                                             <Setter Property="TextBox.Template">
                                                                 <Setter.Value>
                                                                     <ControlTemplate TargetType="TextBox">
-                                                                        <Label Height="{Binding TextBoxHeight}" Width="{Binding TextBoxWidth}" Background="White" Foreground="{Binding Path=表示用文字列Color}" Content="{Binding Path=表示用文字列}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+                                                                        <Label Height="{Binding TextBoxHeight}" Width="{Binding TextBoxWidth}" Background="White" Content="{Binding Path=表示用文字列}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" >
+                                                                            <Label.Style>
+                                                                                <Style>
+                                                                                    <Style.Triggers>
+                                                                                        <DataTrigger Binding="{Binding IsCellModified,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local2:InputComboBoxBase}}}" Value="true">
+                                                                                            <Setter Property="Label.Foreground" Value="Red" />
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                    
+                                                                                </Style>
+                                                                            </Label.Style>
+                                                                        </Label>
                                                                     </ControlTemplate>
                                                                 </Setter.Value>
                                                             </Setter>
                                                         </DataTrigger>
-
                                                     </Style.Triggers>
                                                 </Style>
                                             </TextBox.Style>

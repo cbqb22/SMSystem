@@ -34,5 +34,7 @@ namespace SMSModel.DB.SMSystem
         public virtual DutyCategory DutyCategory { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Shop Shop { get; set; }
+
+        public bool IsModified { get; set; } //オリジナルのプロパティ
     }
 }

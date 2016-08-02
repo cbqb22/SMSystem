@@ -34,6 +34,11 @@ namespace SMSViewModel.Common.Converter
 
             string s = value.ToString();
 
+            if(s == "-")
+            {
+                return value;
+            }
+
             if(s.Length != 4)
             {
                 return "";
@@ -51,15 +56,28 @@ namespace SMSViewModel.Common.Converter
                     return "";
                     //throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。");
                 }
+
+                if(24 < hour)
+                {
+                    return "";
+                }
+
                 if (int.TryParse(s.Substring(2, 2), out minitune) == false)
                 {
                     return "";
                     //throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。");
                 }
 
+                if (60 < minitune)
+                {
+                    return "";
+                }
 
-                double d = minitune / 60;
-                string str = string.Format("{0}{1}{2}", hour, d == 0 ? "" : ".", d == 0 ? "" : d.ToString());
+
+
+                double d = minitune / 60d;
+                string str = (hour + d).ToString();
+                //string str = string.Format("{0}{1}{2}", hour, d == 0 ? "" : ".", d == 0 ? "" : d.ToString());
                 return str;
 
             }
@@ -79,75 +97,44 @@ namespace SMSViewModel.Common.Converter
                 return "";
             }
 
-            return value;
+            string s = value.ToString();
 
-            //string s = value.ToString();
-
-            //var sepa = s.Split('.');
-
-            //if(sepa.Length == 0)
-            //{
-            //    throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。");
-            //}
-
-            //if(sepa.Length == 1)
-            //{
-
-            //    int hour;
-            //    int minitune;
-
-            //    try
-            //    {
-            //        if (int.TryParse(sepa[0], out hour) == false)
-            //        {
-            //            throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。");
-            //        }
-
-            //        return string.Format("{0}", hour, d);
-
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。\r\n" + ex.Message + ex.StackTrace);
-            //    }
+            if (s == "-")
+            {
+                return value;
+            }
 
 
-            //}
-            //else if(sepa.Length == 2)
-            //{
+            double result;
 
-            //    int hour;
-            //    int minitune;
+            try
+            {
+                if (double.TryParse(s, out result) == false)
+                {
+                    return "";
+                    //throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。");
+                }
 
-            //    try
-            //    {
-            //        if (int.TryParse(sepa[0], out hour) == false)
-            //        {
-            //            throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。");
-            //        }
-            //        if (int.TryParse(sepa[1], out minitune) == false)
-            //        {
-            //            throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。");
-            //        }
+                if (24 < result)
+                {
+                    return "";
+                }
+
+                var hour = Math.Floor(result);
+                var hourshosuu = result - hour;
+                var minute = Math.Floor(hourshosuu * 60);
+
+                string str = string.Format("{0}{1}", hour.ToString().PadLeft(2,'0'),minute.ToString().PadLeft(2, '0'));
+                return str;
+
+            }
+            catch
+            {
+                return "";
+                //throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。\r\n" + ex.Message + ex.StackTrace);
+            }
 
 
-            //        double d = minitune / 60;
-
-            //        return string.Format("{0}.{1}", hour, d);
-
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。\r\n" + ex.Message + ex.StackTrace);
-            //    }
-
-
-            //}
-            //else
-            //{
-            //    throw new Exception("コンバーターに渡された値の型が不適切な為、処理を中断しました。");
-
-            //}
 
         }
 

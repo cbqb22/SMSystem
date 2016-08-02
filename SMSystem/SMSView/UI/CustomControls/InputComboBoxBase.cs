@@ -19,32 +19,7 @@ using SMSView.UI.UserControls.Calendaer;
 namespace SMSView.UI.CustomControls
 {
     /// <summary>
-    /// このカスタム コントロールを XAML ファイルで使用するには、手順 1a または 1b の後、手順 2 に従います。
-    ///
-    /// 手順 1a) 現在のプロジェクトに存在する XAML ファイルでこのカスタム コントロールを使用する場合
-    /// この XmlNamespace 属性を使用場所であるマークアップ ファイルのルート要素に
-    /// 追加します:
-    ///
-    ///     xmlns:MyNamespace="clr-namespace:SMSView.UI.CustomControls"
-    ///
-    ///
-    /// 手順 1b) 異なるプロジェクトに存在する XAML ファイルでこのカスタム コントロールを使用する場合
-    /// この XmlNamespace 属性を使用場所であるマークアップ ファイルのルート要素に
-    /// 追加します:
-    ///
-    ///     xmlns:MyNamespace="clr-namespace:SMSView.UI.CustomControls;assembly=SMSView.UI.CustomControls"
-    ///
-    /// また、XAML ファイルのあるプロジェクトからこのプロジェクトへのプロジェクト参照を追加し、
-    /// リビルドして、コンパイル エラーを防ぐ必要があります:
-    ///
-    ///     ソリューション エクスプローラーで対象のプロジェクトを右クリックし、
-    ///     [参照の追加] の [プロジェクト] を選択してから、このプロジェクトを参照し、選択します。
-    ///
-    /// 手順 2)
-    /// コントロールを XAML ファイルで使用します。
-    ///
-    ///     <MyNamespace:InputComboBoxBase/>
-    ///
+    /// 入力用のカスタムコンボボックスのベースクラス
     /// </summary>
     public abstract class InputComboBoxBase : Control, INotifyPropertyChanged
     {
@@ -53,6 +28,7 @@ namespace SMSView.UI.CustomControls
         static InputComboBoxBase()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(InputComboBoxBase), new FrameworkPropertyMetadata(typeof(InputComboBoxBase)));
+
 
         }
 
@@ -113,8 +89,6 @@ namespace SMSView.UI.CustomControls
         }
 
 
-
-
         /// <summary>
         /// 編集可能か
         /// </summary>
@@ -127,9 +101,20 @@ namespace SMSView.UI.CustomControls
         }
 
 
+        /// <summary>
+        /// 修正したか
+        /// </summary>
+        public static readonly DependencyProperty IsModifiedProperty = DependencyProperty.Register("IsModified", typeof(bool), typeof(InputComboBoxBase), new PropertyMetadata(true));
+
+        public bool IsModified
+        {
+            get { return (bool)this.GetValue(IsModifiedProperty); }
+            set { this.SetValue(IsModifiedProperty, value); }
+        }
+
 
         /// <summary>
-        /// スラッシュラインVisibility
+        /// SlashLineVisibility
         /// </summary>
         public static readonly DependencyProperty SlashLineVisibilityProperty = DependencyProperty.Register("SlashLineVisibility", typeof(Visibility), typeof(InputComboBoxBase), new PropertyMetadata(Visibility.Collapsed));
 
@@ -141,7 +126,7 @@ namespace SMSView.UI.CustomControls
 
 
         /// <summary>
-        /// バックスラッシュラインVisibility
+        /// BackSlashLineVisibility
         /// </summary>
         public static readonly DependencyProperty BackSlashLineVisibilityProperty = DependencyProperty.Register("BackSlashLineVisibility", typeof(Visibility), typeof(InputComboBoxBase), new PropertyMetadata(Visibility.Collapsed));
 
@@ -152,6 +137,7 @@ namespace SMSView.UI.CustomControls
         }
 
 
+
         /// <summary>
         /// 表示用文字列
         /// /// </summary>
@@ -159,9 +145,16 @@ namespace SMSView.UI.CustomControls
 
         public string 表示用文字列
         {
-            get { return (string)this.GetValue(表示用文字列Property); }
-            set { this.SetValue(表示用文字列Property, value); }
+            get
+            {
+                return (string)this.GetValue(表示用文字列Property);
+            }
+            set
+            {
+                this.SetValue(表示用文字列Property, value);
+            }
         }
+
 
 
         /// <summary>
@@ -173,7 +166,7 @@ namespace SMSView.UI.CustomControls
         public SolidColorBrush 表示用文字列Color
         {
             get { return (SolidColorBrush)this.GetValue(表示用文字列ColorProperty); }
-            set { this.SetValue(表示用文字列Property, value); }
+            set { this.SetValue(表示用文字列ColorProperty, value); }
         }
 
 
@@ -200,7 +193,7 @@ namespace SMSView.UI.CustomControls
 
         private TextBox textBox;
 
-        protected TextBox TextBox
+        public TextBox TextBox
         {
             get { return textBox; }
             set { textBox = value; }
@@ -208,7 +201,7 @@ namespace SMSView.UI.CustomControls
 
         private Button button;
 
-        protected Button Button
+        public Button Button
         {
             get { return button; }
             set { button = value; }
@@ -216,7 +209,7 @@ namespace SMSView.UI.CustomControls
 
         private ListBox listbox;
 
-        protected ListBox Listbox
+        public ListBox Listbox
         {
             get { return listbox; }
             set { listbox = value; }
@@ -262,7 +255,7 @@ namespace SMSView.UI.CustomControls
             set
             {
                 _ListBoxItemSource = value;
-                OnPropertyChanged("ListBoxItemSource");
+                FirePropertyChanged("ListBoxItemSource");
             }
         }
 
@@ -277,7 +270,7 @@ namespace SMSView.UI.CustomControls
             set
             {
                 _IsListBoxDisplay = value;
-                OnPropertyChanged("IsListBoxDisplay");
+                FirePropertyChanged("IsListBoxDisplay");
             }
         }
 
@@ -291,7 +284,7 @@ namespace SMSView.UI.CustomControls
             set
             {
                 _IsFirstFocus = value;
-                OnPropertyChanged("IsFirstFocus");
+                FirePropertyChanged("IsFirstFocus");
             }
         }
 
@@ -303,8 +296,24 @@ namespace SMSView.UI.CustomControls
             set
             {
                 _IsKeyboardFocus = value;
-                OnPropertyChanged("IsKeyboardFocus");
+                FirePropertyChanged("IsKeyboardFocus");
                 //System.Windows.Controls.Primitives.Popup p;
+            }
+        }
+
+        private bool _IsCellModified;
+        public bool IsCellModified
+        {
+            get
+            {
+                return _IsCellModified;
+            }
+
+            set
+            {
+                _IsCellModified = value;
+                FirePropertyChanged("IsCellModified");
+
             }
         }
 
@@ -327,20 +336,15 @@ namespace SMSView.UI.CustomControls
                 this.IsFirstFocus = true;
                 this.button.Visibility = System.Windows.Visibility.Visible;
                 this.TextBoxWidth = _TextBoxBaseWidth - 17d; //ボタンの幅分、つめる
-
-            }
-            else
-            {
-
                 this.IsKeyboardFocus = true;
+                textBox.SelectAll();
             }
-
-
         }
 
 
         public virtual void InputComboboxBase_LostFocus(object sender, RoutedEventArgs e)
         {
+            var s = SMSViewModel.DataInstance.Data.UI.Instance.ShiftInstance.EmployeeShiftDetailList;
             if (this.textBox != null && this.textBox.IsFocused)
             {
                 return;
@@ -378,10 +382,17 @@ namespace SMSView.UI.CustomControls
             }
             //this.表示用文字列 = lb.SelectedItems[lb.SelectedIndex].ToString();
 
-            this.表示用文字列 = lb.SelectedItem == null ? "" : lb.SelectedItem.ToString();
+            if(lb.SelectedItem == null)
+            {
+                return;
+            }
+
+            this.表示用文字列 = lb.SelectedItem.ToString();
             this.IsListBoxDisplay = false;
             this.textBox.Focus();
             this.textBox.SelectAll();
+            IsModified = true;
+            IsCellModified = true;
         }
 
         public virtual void button_Click(object sender, RoutedEventArgs e)
@@ -401,13 +412,14 @@ namespace SMSView.UI.CustomControls
             }
         }
 
-        public virtual void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (textBox.IsSelectionActive)
-            {
-                textBox.SelectAll();
-            }
-        }
+        //public virtual void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (!textBox.IsFocused)
+        //    {
+        //        textBox.Focus();
+        //    }
+        //    textBox.SelectAll();
+        //}
 
 
         #endregion
@@ -453,7 +465,7 @@ namespace SMSView.UI.CustomControls
             textBox = (TextBox)GetTemplateChild("textbox");
             textBox.DataContext = this;
             textBox.Loaded += new RoutedEventHandler(textBox_Loaded);
-            textBox.GotFocus += TextBox_GotFocus;
+            textBox.LostFocus += TextBox_LostFocus;
 
             border = (Border)GetTemplateChild("border");
             border.DataContext = this;
@@ -467,11 +479,35 @@ namespace SMSView.UI.CustomControls
             this.textBox.Visibility = Visibility.Visible;
             this.listbox.Visibility = System.Windows.Visibility.Collapsed;
             this.button.Visibility = System.Windows.Visibility.Collapsed;
+            this.IsCellModified = false;
 
             _TextBoxBaseWidth = TextBoxWidth;
 
 
         }
+
+
+        /// <summary>
+        /// TextBoxのUpdateSourceTriggerはLostFocus時に走るため、
+        /// LostFocus時に変更がソースと入力データに加えられたかチェック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var tb = sender as TextBox;
+            if(tb == null)
+            {
+                return;
+            }
+
+            if(tb.Text != this.表示用文字列)
+            {
+                IsModified = true;
+                IsCellModified = true;
+            }
+        }
+
 
 
         #endregion
@@ -483,7 +519,7 @@ namespace SMSView.UI.CustomControls
         public event PropertyChangedEventHandler PropertyChanged;
 
         // Create the OnPropertyChanged method to raise the event
-        protected void OnPropertyChanged(string name)
+        protected void FirePropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)

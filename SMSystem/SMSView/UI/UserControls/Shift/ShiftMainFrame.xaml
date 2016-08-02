@@ -69,7 +69,7 @@
                 <StackPanel Orientation="Horizontal" >
                     <Button x:Name="btnPrint" Content="EXCEL出力" Style="{StaticResource styButton}"/>
                     <Button x:Name="btnExcelOutput" Content="印刷" Style="{StaticResource styButton}"/>
-                    <Button x:Name="btnSave" Content="保存" Style="{StaticResource styButton}"/>
+                    <Button x:Name="btnSave" Content="保存" Style="{StaticResource styButton}" Click="btnSave_Click"/>
                         
                 </StackPanel>
             </Grid>
@@ -77,11 +77,11 @@
         </Grid>
         <Grid Grid.Row="1">
             <TabControl TabStripPlacement="Bottom" Background="#FF2F415F">
-                <TabItem Header="　登戸店　" >
+                <TabItem x:Name="noborito" Header="　登戸店　" >
                     <uc:StoreSfhiftTable />
                 </TabItem>
-                <TabItem Header="　向ヶ丘遊園店　"></TabItem>
-                <TabItem Header="　多摩区役所前店　"></TabItem>
+                <TabItem x:Name="yuuen" Header="　向ヶ丘遊園店　"></TabItem>
+                <TabItem x:Name="tamakuyakusho" Header="　多摩区役所前店　"></TabItem>
             </TabControl>
 
         </Grid>

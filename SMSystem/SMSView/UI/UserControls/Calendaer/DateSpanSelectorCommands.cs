@@ -27,7 +27,7 @@ namespace SMSView.UI.UserControls.Calendaer
                 return true;
             }
 
-            public  event EventHandler CanExecuteChanged
+            public event EventHandler CanExecuteChanged
             {
                 add { CommandManager.RequerySuggested += value; }
                 remove { CommandManager.RequerySuggested += value; }
@@ -42,6 +42,11 @@ namespace SMSView.UI.UserControls.Calendaer
 
                 var dss = parameter as DateSpanSelector;
                 dss.selectDateTextBox.SelectedDate = dss.selectDateTextBox.SelectedDate.AddDays(7);
+
+                //var shift = SingletonWindowsManager.GetorMakeWindow<Windows.Shifts>(typeof(Windows.Shifts));
+                //shift.DataContext = null;
+                //shift.DataContext = SMSViewModel.DataInstance.Data.UI.Instance.ShiftInstance;
+                //shift.UpdateLayout();
             }
 
 
