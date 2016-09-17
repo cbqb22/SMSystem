@@ -72,7 +72,7 @@ namespace SMSViewModel.Common.Converter
                     color = new SolidColorBrush(Colors.Black);
                     break;
                 case DayOfWeek.Saturday:
-                    color = new SolidColorBrush(Colors.SkyBlue);
+                    color = new SolidColorBrush(Colors.Blue);
                     break;
                 default:
                     color = new SolidColorBrush(Colors.Black);

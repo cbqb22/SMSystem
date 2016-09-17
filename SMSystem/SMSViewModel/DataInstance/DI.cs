@@ -17,6 +17,8 @@ namespace SMSViewModel.DataInstance
     public class Data
     {
 
+        public static string Value;
+
         #region initializer
         static Data()
         {

@@ -7,7 +7,7 @@
              xmlns:uc="clr-namespace:SMSView.UI.UserControls.Shift"
              xmlns:calender="clr-namespace:SMSView.UI.UserControls.Calendaer"
              Background="#FF2F415F"
-             Width="1600" Height="1000"
+             Width="1600" Height="Auto"
 >
 
     <UserControl.Resources>
@@ -44,7 +44,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*"  />
         </Grid.RowDefinitions>
 

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SMSView.UI.UserControls.Calendaer"
+             xmlns:di="clr-namespace:SMSViewModel.DataInstance;assembly=SMSViewModel"
              xmlns:calender="clr-namespace:SMSView.UI.UserControls.Calendaer">
     <UserControl.Resources>
         <Style TargetType="{x:Type Button}" x:Key="styButton">

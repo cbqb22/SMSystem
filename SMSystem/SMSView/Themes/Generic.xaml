@@ -95,7 +95,7 @@
                                                                                 <Style>
                                                                                     <Style.Triggers>
                                                                                         <DataTrigger Binding="{Binding IsCellModified,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local2:InputComboBoxBase}}}" Value="true">
-                                                                                            <Setter Property="Label.Foreground" Value="Red" />
+                                                                                            <Setter Property="Label.Foreground" Value="Green" />
                                                                                         </DataTrigger>
                                                                                     </Style.Triggers>
                                                                                     

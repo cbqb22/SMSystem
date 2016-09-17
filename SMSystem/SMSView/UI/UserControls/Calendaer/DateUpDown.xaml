@@ -61,9 +61,11 @@
                         <Border Name="TopButtonBorder" BorderThickness="0" CornerRadius="2 2 0 0" 
 										  Margin="1 1 1 .5" Background="{StaticResource TopButtonNormalBrush}">
 
-                            <Polygon Points="3,6 7.5,2 12,6 8.5,6 7.5,5 6.5,6"  StrokeThickness="1" Fill="Black"
-											   StrokeLineJoin="Round" Canvas.Left="1" Canvas.Top="1"/>
+                            <Grid VerticalAlignment="Center">
 
+                                <Polygon Points="3,6 7.5,2 12,6 8.5,6 7.5,5 6.5,6"  StrokeThickness="1" Fill="Black"
+											   StrokeLineJoin="Round" Canvas.Left="1" Canvas.Top="1"/>
+                            </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -86,9 +88,13 @@
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
                         <Border Name="BottomButtonBorder" BorderThickness="0" CornerRadius="0 0 2 2" 
 										  Margin="1 .5 1 1" Background="{StaticResource BottomButtonNormalBrush}">
+                            <Grid VerticalAlignment="Center">
 
-                            <Polygon Points="3,2 7.5,6 12,2 8.5,2 7.5,3 6.5,2"  StrokeThickness="1" Fill="Black"
+
+                                <Polygon Points="3,2 7.5,6 12,2 8.5,2 7.5,3 6.5,2"  StrokeThickness="1" Fill="Black"
 										   StrokeLineJoin="Round" Canvas.Left="1" Canvas.Top="1"/>
+
+                            </Grid>
 
                         </Border>
                         <ControlTemplate.Triggers>
@@ -129,8 +135,8 @@
 				HorizontalContentAlignment="Right"
 				VerticalContentAlignment="Center" Margin="0"
 				/>
-            <RepeatButton Grid.Row="0" Grid.Column="1" Name="rbUp" VerticalAlignment="Stretch" Click="repeatButtonUp_Click" Focusable="False" Style="{StaticResource TopButton}" />
-            <RepeatButton Grid.Row="1" Grid.Column="1" Name="rbDown" VerticalAlignment="Stretch" Click="repeatButtonDown_Click" Focusable="False" Style="{StaticResource BottomButton}" />
+            <RepeatButton Grid.Row="0" Grid.Column="1" Name="rbUp" VerticalAlignment="Stretch" Click="repeatButtonUp_Click" Focusable="False" Style="{StaticResource TopButton}"  Height="auto"/>
+            <RepeatButton Grid.Row="1" Grid.Column="1" Name="rbDown" VerticalAlignment="Stretch" Click="repeatButtonDown_Click" Focusable="False" Style="{StaticResource BottomButton}" Height="auto"/>
         </Grid>
     </Border>
 

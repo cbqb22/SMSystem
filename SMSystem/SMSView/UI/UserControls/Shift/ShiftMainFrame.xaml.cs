@@ -67,7 +67,8 @@ namespace SMSView.UI.UserControls.Shift
 
             foreach(var icb in list)
             {
-                icb.OnApplyTemplate();
+                icb.UpdateLayout();
+                //icb.OnApplyTemplate();
                 //icb.IsCellModified = false;
             }
 

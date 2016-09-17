@@ -42,18 +42,16 @@ namespace SMSView.UI.Windows
         #region イベント
         private void Storyboard_Completed(object sender, EventArgs e)
         {
-            Storyboard sb = base.FindResource("TitleColorChange") as Storyboard;
+            Storyboard sb = base.FindResource("sbTitleColorChange") as Storyboard;
             base.BeginStoryboard(sb);
 
-            var st = base.FindResource("ButtonStyle1") as Style;
+            Storyboard sb2 = base.FindResource("sbSetTooltips") as Storyboard;
+            base.BeginStoryboard(sb2);
 
-            
         }
 
         private void GridOperationButtons_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-            //マウスボタン押下状態でなければ何もしない
             if (e.ButtonState != MouseButtonState.Pressed) return;
 
             this.DragMove();

@@ -13,7 +13,7 @@
         Icon="{StaticResource WindowIcon}"
         WindowStartupLocation="CenterScreen" Background="#FF2F415F" mc:Ignorable="d">
     <base:BaseWindow.Resources>
-        <Storyboard x:Key="Storyboard1" Completed="Storyboard_Completed">
+        <Storyboard x:Key="sbNowLoading" Completed="Storyboard_Completed">
             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Hidden}"/>
                 <DiscreteObjectKeyFrame KeyTime="00:00:04" Value="{x:Static Visibility.Visible}"/>
@@ -115,7 +115,7 @@
                 <SplineDoubleKeyFrame KeyTime="00:00:05" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="TitleColorChange" RepeatBehavior="Forever">
+        <Storyboard x:Key="sbTitleColorChange" RepeatBehavior="Forever">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
                 <EasingColorKeyFrame KeyTime="0" Value="#FF65632E"/>
                 <EasingColorKeyFrame KeyTime="0:0:1" Value="#FF347C4B"/>
@@ -131,6 +131,30 @@
                 <EasingColorKeyFrame KeyTime="0:0:4" Value="#FF65632E"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+
+        <Storyboard x:Key="sbSetTooltips">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ToolTipService.ToolTip)" Storyboard.TargetName="btnShiftManagement">
+                <DiscreteObjectKeyFrame KeyTime="0" Value=""/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="シフト表を作成、修正、印刷を行います。"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ToolTipService.ToolTip)" Storyboard.TargetName="btnValify">
+                <DiscreteObjectKeyFrame KeyTime="0" Value=""/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="シフト表のチェック(重複、時間数等)を行います。"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ToolTipService.ToolTip)" Storyboard.TargetName="btnPrint">
+                <DiscreteObjectKeyFrame KeyTime="0" Value=""/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="期間を指定してシフト表の印刷を行います。"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ToolTipService.ToolTip)" Storyboard.TargetName="btnMasterRegistration">
+                <DiscreteObjectKeyFrame KeyTime="0" Value=""/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="マスタの追加、変更を行います。"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ToolTipService.ToolTip)" Storyboard.TargetName="btnSettings">
+                <DiscreteObjectKeyFrame KeyTime="0" Value=""/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="プリンタ、出力フォルダ等を設定します。"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
 
         <Style x:Key="MenuButtonLeftStyle" TargetType="Button">
             <Setter Property="Background" Value="#FFFFFECD"/>
@@ -160,7 +184,7 @@
     </base:BaseWindow.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource Storyboard1}" />
+            <BeginStoryboard Storyboard="{StaticResource sbNowLoading}" />
         </EventTrigger>
 
 
@@ -209,22 +233,22 @@
             </StackPanel>
         </Grid>
         <Grid x:Name="gdbutton1" Grid.Row="2">
-            <Button x:Name="btnShiftManagement" Content="シフト管理" Style="{StaticResource MenuButtonLeftStyle}" ToolTip="シフト表を作成、修正、印刷を行います。" Command="{x:Static local:Menu.ShowWindowCommand}" CommandParameter="{x:Type local:Shifts}"/>
+            <Button x:Name="btnShiftManagement" Content="シフト管理" Style="{StaticResource MenuButtonLeftStyle}" Command="{x:Static local:Menu.ShowWindowCommand}" CommandParameter="{x:Type local:Shifts}"/>
         </Grid>
         <Grid x:Name="gdbutton2" Grid.Column="1" Grid.Row="2">
-            <Button x:Name="btnValify" Content="照合" Style="{StaticResource MenuButtonRightStyle}" ToolTip="シフト表のチェック(重複、時間数等)を行います。"/>
+            <Button x:Name="btnValify" Content="照合" Style="{StaticResource MenuButtonRightStyle}"/>
         </Grid>
         <Grid x:Name="gdbutton3" Grid.Row="3">
-            <Button x:Name="btnPrint" Content="印刷" Style="{StaticResource MenuButtonLeftStyle}" ToolTip="期間を指定してシフト表の印刷を行います。"/>
+            <Button x:Name="btnPrint" Content="印刷" Style="{StaticResource MenuButtonLeftStyle}"/>
         </Grid>
         <Grid x:Name="gdbutton4" Grid.Column="1" Grid.Row="3">
-            <Button x:Name="btnMasterRegistration" Content="マスタ管理"  Style="{StaticResource MenuButtonRightStyle}" ToolTip="マスタの追加、変更を行います。"/>
+            <Button x:Name="btnMasterRegistration" Content="マスタ管理"  Style="{StaticResource MenuButtonRightStyle}"/>
         </Grid>
         <Grid x:Name="gdbutton5" Grid.Row="4">
             <Button x:Name="btnNone" Content="" Style="{StaticResource MenuButtonLeftStyle}" />
         </Grid>
         <Grid x:Name="gdbutton6" Grid.Column="1" Grid.Row="4">
-            <Button x:Name="btnSettings" Content="設定"  Style="{StaticResource MenuButtonRightStyle}" ToolTip="プリンタ、出力フォルダ等を設定します。" Command="{x:Static local:Menu.ShowWindowCommand }" CommandParameter="{x:Type local:Settings}"/>
+            <Button x:Name="btnSettings" Content="設定"  Style="{StaticResource MenuButtonRightStyle}" Command="{x:Static local:Menu.ShowWindowCommand }" CommandParameter="{x:Type local:Settings}"/>
         </Grid>
         <Grid x:Name="gdVersion"  Grid.Column="1" Grid.Row="5" >
             <TextBlock Text="Ver0.90a" Style="{StaticResource VersionStyle}"/>

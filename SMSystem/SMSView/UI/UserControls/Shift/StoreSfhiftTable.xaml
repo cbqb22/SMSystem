@@ -10,6 +10,7 @@
              xmlns:converter="clr-namespace:SMSViewModel.Common.Converter;assembly=SMSViewModel"
              Background="#FF2F415F"
              mc:Ignorable="d" 
+             Height="auto" Width="1600"
              d:DesignHeight="800" d:DesignWidth="1600"
 >
     <UserControl.Resources>
@@ -41,7 +42,7 @@
         </Style>
 
         <Style TargetType="{x:Type Button}" x:Key="styButton">
-            <Setter Property="Width" Value="120" />
+            <Setter Property="Width" Value="122" />
             <Setter Property="Height" Value="50" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Background" Value="LightYellow" />

@@ -11,7 +11,7 @@
         Icon="{StaticResource WindowIcon}"
         WindowStartupLocation="CenterScreen" Background="#FF2F415F"
         Title="シフト表作成" 
-                 Width="1600" Height="1050">
+                 Width="1600" Height="900">
     <Grid>
 
         <Grid.ColumnDefinitions>
